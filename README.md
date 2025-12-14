@@ -31,6 +31,6 @@ Ceci est un squelette de dépôt pour votre jeu.
 
 N'oubliez pas d'ajouter M. Blanchard à votre dépôt (utilisateur `blanch01`).
 
-Votre `metada.yaml` sera récupéré tous les soirs pour mettre à jour les fiches-équipes.
+Votre `metadata.yaml` sera récupéré tous les soirs pour mettre à jour les fiches-équipes.
 
 Encore merci de votre participation !
