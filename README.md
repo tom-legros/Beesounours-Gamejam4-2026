@@ -8,11 +8,11 @@ Ceci est un squelette de dépôt pour votre jeu.
 ├── README.md
 ├── metadata.yaml
 ├── run.sh
-├── Artwork
+├── artwork
 │   ├── cover.png
 │   ├── thumbnail.png
 │   └── video.mp4
-└── Game
+└── game
     ├── ...
     ├── ...
     └── ...
