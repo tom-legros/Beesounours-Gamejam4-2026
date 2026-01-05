@@ -5,19 +5,19 @@
 # - NE SUPPRIMEZ PAS LES CHAMPS VIDES laissez par exemple,    abstract: "" 
 # ----------------------------------
 title: "[!] Title of your game"  # Le titre tel qu'il apparaîtra lors de la présentation
-abstract: "In this game, you play as a hero who must save the world from impending doom." # Résumé de votre jeu
-team:  "[!] Name of your dev team"  # Le nom de votre équipe tel qu'il apparaîtra à la présentation
-motto: "Yeah, well, you know, that's just, like, your opinion, man." # Le slogan de votre équipe
+abstract: "" # Résumé de votre jeu
+team:  "[!] ekip L like Legends"  # Le nom de votre équipe tel qu'il apparaîtra à la présentation
+motto: "Me + you and you and we're good for life adventures" # Le slogan de votre équipe
 members:  # Liste des membres de l'équipe (ajoutez un bloc par membre)
   # --- Premier membre ---
-  - firstname: "[!] First Name"   # Prénom
-    lastname: "[!] Last Name"     # Nom
-    nickname: "Nickname"          # Pseudo
-    group: "[!] INF_Sx_yZ"        # Groupe de TP (Ex : INF_S2_3A)
-    bestgame: "Target Renegade"   # Jeu préféré de tous les temps
-    momentgame: "Jupyter"         # Jeu préféré du moment
-    ostgame: "Save The Poulettes" # Bande son / musique de jeu vidéo préférée
-    character: "Fruity Franck"    # Personnage de jeu vidéo préféré
+  - firstname: "[!] Benjamin"   # Prénom
+    lastname: "[!] Pierret"     # Nom
+    nickname: "Reshomy"          # Pseudo
+    group: "[!] tp_1_B"        # Groupe de TP (Ex : INF_S2_3A)
+    bestgame: "Minecraft"   # Jeu préféré de tous les temps
+    momentgame: "Hollow Knight Silksong"         # Jeu préféré du moment
+    ostgame: "Aria Math by C418" # Bande son / musique de jeu vidéo préférée
+    character: "DOOM Slayer"    # Personnage de jeu vidéo préféré
   # --- Deuxième membre ---
   - firstname: "[!]First Name"             # Prénom
     lastname: "[!]Last Name"               # Nom
