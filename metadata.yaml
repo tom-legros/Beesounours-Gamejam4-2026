@@ -19,6 +19,15 @@ members:  # Liste des membres de l'équipe (ajoutez un bloc par membre)
     ostgame: "Aria Math by C418" # Bande son / musique de jeu vidéo préférée
     character: "DOOM Slayer"    # Personnage de jeu vidéo préféré
   # --- Deuxième membre ---
+  - firstname: "[!]Tom"             # Prénom
+    lastname: "[!]Legros"               # Nom
+    nickname: "Cryoro"                   # Pseudo
+    group: "[!]INF_S1_1A"                  # Groupe de TP (Ex : INF_S4_2B)
+    bestgame: "Hollow Knight"                    # Jeu préféré de tous les temps
+    momentgame: "Hollow Knigh Silksong" # Jeu préféré du moment
+    ostgame: "Octopath Traveler 2 - Critical Clash I"       # Bande son / musique de jeu vidéo préférée
+    character: "Hikari(Octopath Traveler 2)"                # Personnage préféré
+    # --- Troisième membre ---
   - firstname: "[!]First Name"             # Prénom
     lastname: "[!]Last Name"               # Nom
     nickname: "Nickname"                   # Pseudo
