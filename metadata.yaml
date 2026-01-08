@@ -28,14 +28,14 @@ members:  # Liste des membres de l'équipe (ajoutez un bloc par membre)
     ostgame: "Octopath Traveler 2 - Critical Clash I"       # Bande son / musique de jeu vidéo préférée
     character: "Hikari(Octopath Traveler 2)"                # Personnage préféré
     # --- Troisième membre ---
-  - firstname: "[!]First Name"             # Prénom
-    lastname: "[!]Last Name"               # Nom
-    nickname: "Nickname"                   # Pseudo
-    group: "[!]INF_Sx_yZ"                  # Groupe de TP (Ex : INF_S4_2B)
-    bestgame: "Frogger"                    # Jeu préféré de tous les temps
-    momentgame: "Didier Gillard Simulator" # Jeu préféré du moment
-    ostgame: "Arkanoid Ending theme"       # Bande son / musique de jeu vidéo préférée
-    character: "The square"                # Personnage préféré
+  - firstname: "[!]Arthur"             # Prénom
+    lastname: "[!]Sauvaget"               # Nom
+    nickname: "Boubou"                   # Pseudo
+    group: "[!]INF_S1_1B"                  # Groupe de TP (Ex : INF_S4_2B)
+    bestgame: "Fallout 3"                    # Jeu préféré de tous les temps
+    momentgame: "Outer Worlds 2" # Jeu préféré du moment
+    ostgame: "BIG SHOT - Toby Fox"       # Bande son / musique de jeu vidéo préférée
+    character: "Ichiban Kasuga"                # Personnage préféré
 engine: "Unity" # Moteur de jeu utilisé (exemples : "Pygame" "Phaser" "Godot" "Unity" "Unreal" "Custom/Python" "Custom/Javascript")
 credits:
   - audio: "self production"                          # Audio
