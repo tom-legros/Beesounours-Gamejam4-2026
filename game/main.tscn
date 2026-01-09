@@ -31,6 +31,13 @@ shape = SubResource("RectangleShape2D_1bvp3")
 texture_filter = 1
 texture = ExtResource("2_h2yge")
 
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(6, 6)
+process_callback = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+rotation_smoothing_enabled = true
+
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 z_index = -1
 texture_filter = 1
