@@ -13,14 +13,22 @@ var texture_attaque = preload("res://img/Ours_attaque.png")
 func _physics_process(_delta):
 	if Input.is_key_pressed(KEY_SPACE) and is_attacking == false:
 		lancer_attaque()
+
 	var current_speed = WALK_SPEED
 	if Input.is_key_pressed(KEY_SHIFT):
 		current_speed = SPRINT_SPEED
+
 	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+
+	if direction.x < 0:
+		sprite_ours.flip_h = true 
+	elif direction.x > 0:
+		sprite_ours.flip_h = false 
 	if direction != Vector2.ZERO:
 		velocity = direction * current_speed
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, current_speed)
+
 	move_and_slide()
 
 func lancer_attaque():
