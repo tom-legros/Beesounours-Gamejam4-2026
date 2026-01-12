@@ -24,7 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://b1nxfq6xpc5cf" path="res://img/Barre full.png" id="22_d13ii"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
-size = Vector2(12, 12)
+size = Vector2(10, 14)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_272bh"]
 animations = [{
@@ -97,7 +97,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
-size = Vector2(9, 12)
+size = Vector2(17, 22)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ryguw"]
 animations = [{
@@ -114,9 +114,9 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("16_getpj")
 }],
-"loop": true,
+"loop": false,
 "name": &"slash",
-"speed": 5.0
+"speed": 25.0
 }]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1bvp3"]
@@ -153,6 +153,7 @@ collision_mask = 3
 script = ExtResource("1_0xm2m")
 
 [node name="CollisionCorps" type="CollisionShape2D" parent="Player"]
+position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_1bvp3")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="Player"]
@@ -171,14 +172,19 @@ rotation_smoothing_enabled = true
 [node name="ZoneAttaque" type="Area2D" parent="Player"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/ZoneAttaque"]
-position = Vector2(9.5, 0)
+position = Vector2(13.5, 0)
 shape = SubResource("RectangleShape2D_h2yge")
 disabled = true
 
-[node name="slashSprite" type="AnimatedSprite2D" parent="Player/ZoneAttaque"]
+[node name="SlashSprite" type="AnimatedSprite2D" parent="Player/ZoneAttaque"]
 visible = false
+z_index = 3
+texture_filter = 1
+position = Vector2(14, -2)
 sprite_frames = SubResource("SpriteFrames_ryguw")
 animation = &"slash"
+frame = 3
+frame_progress = 1.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Player"]
 
@@ -226,3 +232,4 @@ position = Vector2(192, 57)
 position = Vector2(-84, 141)
 
 [connection signal="body_entered" from="Player/ZoneAttaque" to="Player" method="_on_zone_attaque_body_entered"]
+[connection signal="animation_finished" from="Player/ZoneAttaque/SlashSprite" to="Player" method="_on_slash_sprite_animation_finished"]

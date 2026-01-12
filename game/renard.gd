@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var VITESSE_MAX = 80
+@export var VITESSE_MAX = 50
 @export var ACCELERATION = 400
 @export var VITESSE_ERRANCE = 30
 

@@ -16,6 +16,7 @@ var is_attacking: bool = false
 @onready var camera = $Camera2D
 @onready var animated_sprite = $PlayerSprite
 @onready var barre_vie = get_tree().current_scene.find_child("BarreVie", true, false)
+@onready var slash_sprite: AnimatedSprite2D = $ZoneAttaque/SlashSprite
 
 
 var texture_normale = preload("res://img/Ours_Walking1.png")
@@ -26,6 +27,7 @@ var texture_avant = preload("res://img/Ours_avant.png")
 var pv_max : int = 3
 var pv_actuels : int = pv_max
 var est_invulnerable : bool = false 
+
 
 func recevoir_degats(montant: int):
 	if est_invulnerable or pv_actuels <= 0:
@@ -79,8 +81,7 @@ func _physics_process(_delta):
 	elif direction.y != 0:
 		animated_sprite.flip_h = false 
 		if direction.y > 0:
-			if not is_attacking:
-				animated_sprite.play("devant")
+			animated_sprite.play("devant")
 			zone_attaque_node.rotation_degrees = 90  
 		else: 
 			animated_sprite.play("arriere")         
@@ -94,14 +95,25 @@ func _physics_process(_delta):
 	move_and_slide()
 
 func lancer_attaque():
+	if is_attacking:
+		return
+
 	is_attacking = true
+	velocity = Vector2.ZERO
+
 	animated_sprite.play("attaque")
+
+	await get_tree().create_timer(0.15).timeout
 	collision_attaque.disabled = false
-	await get_tree().create_timer(0.4).timeout
+
+	slash_sprite.visible = true
+	slash_sprite.play("slash")
+
+	await get_tree().create_timer(0.25).timeout
 	collision_attaque.disabled = true
-	if animated_sprite:
-		animated_sprite.play("walking")
+
 	is_attacking = false
+
 
 	
 func _on_zone_attaque_body_entered(body):
@@ -112,3 +124,7 @@ func _on_zone_attaque_body_entered(body):
 		cible.modulate = Color.WHITE * 10
 		await get_tree().create_timer(0.05).timeout
 		cible.queue_free()
+
+
+func _on_slash_sprite_animation_finished():
+	slash_sprite.visible = false
