@@ -36,12 +36,7 @@ func _physics_process(_delta):
 		animated_sprite.play("walking")
 	elif direction.x > 0:
 		animated_sprite.flip_h = false
-	elif direction.y < 0:
-		animated_sprite.play("arriere")
-	elif direction.y > 0:
-		animated_sprite.flip_h = false
 	if direction != Vector2.ZERO:
-		animated_sprite.play("arriere")
 		velocity = direction * current_speed
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, current_speed)
