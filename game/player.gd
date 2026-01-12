@@ -49,12 +49,12 @@ func _physics_process(_delta):
 func lancer_attaque():
 	is_attacking = true
 	if animated_sprite:
-		animated_sprite.texture = texture_attaque
+		animated_sprite.play("attaque")
 	collision_attaque.disabled = false
 	await get_tree().create_timer(0.4).timeout
 	collision_attaque.disabled = true
 	if animated_sprite:
-		animated_sprite.texture = texture_normale
+		animated_sprite.play("walking")
 	is_attacking = false
 
 	

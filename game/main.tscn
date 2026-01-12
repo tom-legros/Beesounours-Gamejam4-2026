@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://d2syatk0fq20k"]
+[gd_scene load_steps=18 format=4 uid="uid://d2syatk0fq20k"]
 
 [ext_resource type="Script" uid="uid://d2exudqh0ika2" path="res://player.gd" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://c4t8wew7jch15" path="res://img/Ours_arriere1.png" id="2_kek77"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://sk2vuxovb2x5" path="res://renard.tscn" id="4_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://b716d3wokpugk" path="res://img/Ours_arriere3.png" id="4_efxa6"]
 [ext_resource type="Texture2D" uid="uid://d0vps622imkyv" path="res://img/Ours_arriere4.png" id="5_dg77c"]
+[ext_resource type="Texture2D" uid="uid://dr8ua5f8v2tmm" path="res://img/Ours_attaque.png" id="6_4c57u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
 size = Vector2(12, 12)
@@ -30,6 +31,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"arriere",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_4c57u")
+}],
+"loop": true,
+"name": &"attaque",
 "speed": 5.0
 }, {
 "frames": [{
@@ -76,7 +85,7 @@ shape = SubResource("RectangleShape2D_1bvp3")
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="Player"]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_272bh")
-animation = &"arriere"
+animation = &"attaque"
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(14, 8)
