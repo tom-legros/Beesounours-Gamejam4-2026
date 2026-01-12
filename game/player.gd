@@ -11,7 +11,8 @@ var is_attacking: bool = false
 
 @onready var collision_attaque = $ZoneAttaque/CollisionShape2D
 @onready var sprite_ours = $PlayerSprite
-@onready var camera = $Camera2D 
+@onready var camera = $Camera2D
+@onready var col_attaque = $ZoneAttaque/CollisionShape2D
 
 var texture_normale = preload("res://img/Ours.png")
 var texture_attaque = preload("res://img/Ours_attaque.png")
@@ -51,6 +52,7 @@ func lancer_attaque():
 		sprite_ours.texture = texture_normale
 	is_attacking = false
 
+	
 func _on_zone_attaque_body_entered(body):
 	if body == self:
 		return  

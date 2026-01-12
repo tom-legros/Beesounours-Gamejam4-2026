@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://sk2vuxovb2x5"]
 
 [ext_resource type="Texture2D" uid="uid://chchfl8614gnw" path="res://img/renard.png" id="1_kv4hg"]
-[ext_resource type="Script" path="res://renard.gd" id="1_mede7"]
+[ext_resource type="Script" uid="uid://c3s817cmw628g" path="res://renard.gd" id="1_mede7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_272bh"]
 size = Vector2(16, 11.612908)
@@ -18,12 +18,12 @@ position = Vector2(1, 2.5000076)
 scale = Vector2(1.25, 1.2916666)
 texture = ExtResource("1_kv4hg")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Ennemis"]]
 position = Vector2(1.0000002, 0.5)
 scale = Vector2(1.25, 1.2916662)
 shape = SubResource("RectangleShape2D_272bh")
 
-[node name="Vision" type="Area2D" parent="."]
+[node name="Vision" type="Area2D" parent="." groups=["Ennemis"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vision"]
 shape = SubResource("CircleShape2D_kv4hg")
