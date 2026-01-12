@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-const WALK_SPEED = 150.0 
-const SPRINT_SPEED = 250.0 
+const WALK_SPEED = 70
+const SPRINT_SPEED = 150
 
 const ZOOM_NORMAL = Vector2(5.0, 5.0) 
 const ZOOM_RUN = Vector2(3.5, 3.5) 
@@ -52,5 +52,7 @@ func lancer_attaque():
 	is_attacking = false
 
 func _on_zone_attaque_body_entered(body):
+	if body == self:
+		return  
 	if body.is_in_group("Ennemis"):
 		body.queue_free()

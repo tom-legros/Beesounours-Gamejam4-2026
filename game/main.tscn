@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=4 uid="uid://d2syatk0fq20k"]
+[gd_scene load_steps=11 format=4 uid="uid://d2syatk0fq20k"]
 
 [ext_resource type="Script" uid="uid://d2exudqh0ika2" path="res://player.gd" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://ddgecthpsq2c2" path="res://img/Ours.png" id="2_h2yge"]
 [ext_resource type="Texture2D" uid="uid://bsowlappeu2vf" path="res://img/herbe.png" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://sk2vuxovb2x5" path="res://renard.tscn" id="4_1bvp3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
 size = Vector2(12, 12)
@@ -79,3 +80,12 @@ shape = SubResource("RectangleShape2D_7mycd")
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Bordures"]
 position = Vector2(293, 50)
 shape = SubResource("RectangleShape2D_7mycd")
+
+[node name="Renard" parent="." instance=ExtResource("4_1bvp3")]
+position = Vector2(122, 23)
+
+[node name="Renard2" parent="." instance=ExtResource("4_1bvp3")]
+position = Vector2(146, 136)
+
+[node name="Renard3" parent="." instance=ExtResource("4_1bvp3")]
+position = Vector2(-119, 158)
