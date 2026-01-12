@@ -1,12 +1,48 @@
-[gd_scene load_steps=11 format=4 uid="uid://d2syatk0fq20k"]
+[gd_scene load_steps=17 format=4 uid="uid://d2syatk0fq20k"]
 
 [ext_resource type="Script" uid="uid://d2exudqh0ika2" path="res://player.gd" id="1_0xm2m"]
-[ext_resource type="Texture2D" uid="uid://ddgecthpsq2c2" path="res://img/Ours.png" id="2_h2yge"]
+[ext_resource type="Texture2D" uid="uid://c4t8wew7jch15" path="res://img/Ours_arriere1.png" id="2_kek77"]
+[ext_resource type="Texture2D" uid="uid://drtvyyl4a6l3k" path="res://img/Ours_Walking1.png" id="2_lquwl"]
+[ext_resource type="Texture2D" uid="uid://c5pvlegf6o6w4" path="res://img/Ours_arriere2.png" id="3_4c57u"]
+[ext_resource type="Texture2D" uid="uid://dc7jbqnh1auil" path="res://img/Ours_Walking2.png" id="3_7mycd"]
 [ext_resource type="Texture2D" uid="uid://bsowlappeu2vf" path="res://img/herbe.png" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://sk2vuxovb2x5" path="res://renard.tscn" id="4_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://b716d3wokpugk" path="res://img/Ours_arriere3.png" id="4_efxa6"]
+[ext_resource type="Texture2D" uid="uid://d0vps622imkyv" path="res://img/Ours_arriere4.png" id="5_dg77c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
 size = Vector2(12, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_272bh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_kek77")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_4c57u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_efxa6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_dg77c")
+}],
+"loop": true,
+"name": &"arriere",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_lquwl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7mycd")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
 size = Vector2(9, 12)
@@ -28,6 +64,7 @@ size = Vector2(12.75, 332.5)
 [node name="Node2D" type="Node2D"]
 
 [node name="Player" type="CharacterBody2D" parent="."]
+z_index = 1
 position = Vector2(4, 4)
 collision_layer = 3
 collision_mask = 3
@@ -36,9 +73,10 @@ script = ExtResource("1_0xm2m")
 [node name="CollisionCorps" type="CollisionShape2D" parent="Player"]
 shape = SubResource("RectangleShape2D_1bvp3")
 
-[node name="PlayerSprite" type="Sprite2D" parent="Player"]
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="Player"]
 texture_filter = 1
-texture = ExtResource("2_h2yge")
+sprite_frames = SubResource("SpriteFrames_272bh")
+animation = &"arriere"
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(14, 8)
