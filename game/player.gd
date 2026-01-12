@@ -126,12 +126,17 @@ func lancer_attaque():
 	
 func _on_zone_attaque_body_entered(body):
 	if body == self:
-		return  
-	if body.is_in_group("Ennemis") or body.get_parent().is_in_group("Ennemis"):
-		var cible = body if body.is_in_group("Ennemis") else body.get_parent()
-		cible.modulate = Color.WHITE * 10
-		await get_tree().create_timer(0.05).timeout
-		cible.queue_free()
+		return
+	var ennemi = null
+	if body.is_in_group("Ennemis"):
+		ennemi = body
+	elif body.get_parent().is_in_group("Ennemis"):
+		ennemi = body.get_parent()
+	if ennemi:
+		if ennemi.has_method("subir_degats"):
+			ennemi.subir_degats()
+		else:
+			ennemi.queue_free()
 
 
 func _on_slash_sprite_animation_finished():
