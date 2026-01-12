@@ -22,6 +22,32 @@ var texture_attaque = preload("res://img/Ours_attaque.png")
 var texture_arriere = preload("res://img/Ours_arriere1.png")
 var texture_avant = preload("res://img/Ours_avant.png")
 
+var pv_max : int = 3
+var pv_actuels : int = pv_max
+var est_invulnerable : bool = false 
+
+func recevoir_degats(montant: int):
+	if pv_actuels <= 0 or est_invulnerable:
+		return
+	pv_actuels -= montant
+	print("AIE ! PV restants : ", pv_actuels)
+	est_invulnerable = true
+	var tween = create_tween()
+	tween.tween_property(animated_sprite, "modulate", Color.RED, 0.1)
+	tween.tween_property(animated_sprite, "modulate", Color.WHITE, 0.1)
+	tween.set_loops(3) 
+	if pv_actuels <= 0:
+		mourir()
+	else:
+		await get_tree().create_timer(1.0).timeout
+		est_invulnerable = false
+
+func mourir():
+	print("L'ours a rendu l'âme...")
+	set_physics_process(false) 
+	await get_tree().create_timer(1.5).timeout
+	get_tree().reload_current_scene()
+
 func _physics_process(_delta):
 	animated_sprite.speed_scale = 1
 	if Input.is_key_pressed(KEY_SPACE) and is_attacking == false:

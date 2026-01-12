@@ -28,7 +28,6 @@ func _physics_process(delta):
 		$Sprite2D.flip_h = true
 	elif velocity.x < -2:
 		$Sprite2D.flip_h = false
-	
 	move_and_slide()
 
 func choisir_direction_aleatoire():
@@ -45,3 +44,7 @@ func _on_vision_body_exited(body):
 	if body == cible:
 		cible = null
 		choisir_direction_aleatoire()
+		
+func _on_zone_degats_body_entered(body):
+	if body.name == "Player":
+		body.recevoir_degats(1) 
