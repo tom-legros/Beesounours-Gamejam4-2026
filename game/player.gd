@@ -23,13 +23,15 @@ var texture_arriere = preload("res://img/Ours_arriere1.png")
 var texture_avant = preload("res://img/Ours_avant.png")
 
 func _physics_process(_delta):
+	animated_sprite.speed_scale = 1
 	if Input.is_key_pressed(KEY_SPACE) and is_attacking == false:
 		lancer_attaque()
 	var current_speed = WALK_SPEED
 	var target_zoom = ZOOM_NORMAL 
 	if Input.is_key_pressed(KEY_SHIFT):
 		current_speed = SPRINT_SPEED
-		target_zoom = ZOOM_RUN    
+		target_zoom = ZOOM_RUN
+		animated_sprite.speed_scale = 4
 	if camera:
 		camera.zoom = camera.zoom.lerp(target_zoom, ZOOM_SPEED * _delta)
 	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -44,7 +46,7 @@ func _physics_process(_delta):
 	elif direction.y != 0:
 		animated_sprite.flip_h = false 
 		if direction.y > 0:
-			animated_sprite.play("walking")
+			animated_sprite.play("devant")
 			zone_attaque_node.rotation_degrees = 90  
 		else: 
 			animated_sprite.play("arriere")         
