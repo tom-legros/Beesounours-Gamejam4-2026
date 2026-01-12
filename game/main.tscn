@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://d2syatk0fq20k"]
+[gd_scene load_steps=29 format=4 uid="uid://d2syatk0fq20k"]
 
 [ext_resource type="Script" uid="uid://d2exudqh0ika2" path="res://player.gd" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://c4t8wew7jch15" path="res://img/Ours_arriere1.png" id="2_kek77"]
@@ -8,12 +8,18 @@
 [ext_resource type="PackedScene" uid="uid://sk2vuxovb2x5" path="res://renard.tscn" id="4_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://b716d3wokpugk" path="res://img/Ours_arriere3.png" id="4_efxa6"]
 [ext_resource type="Texture2D" uid="uid://d0vps622imkyv" path="res://img/Ours_arriere4.png" id="5_dg77c"]
-[ext_resource type="Texture2D" uid="uid://dr8ua5f8v2tmm" path="res://img/Ours_attaque.png" id="6_4c57u"]
+[ext_resource type="Texture2D" uid="uid://boaidj31y5vn0" path="res://img/Ours_attaque1.png" id="6_82xsv"]
+[ext_resource type="Texture2D" uid="uid://dygfe7iok8uoo" path="res://img/Ours_attaque2.png" id="7_getpj"]
 [ext_resource type="Texture2D" uid="uid://b1k2ak8acfcgy" path="res://img/Ours_avant1.png" id="7_w48qg"]
+[ext_resource type="Texture2D" uid="uid://ixga7vsxkjci" path="res://img/Ours_attaque3.png" id="8_ryguw"]
 [ext_resource type="Texture2D" uid="uid://ckt2d2fn826gk" path="res://img/Ours_avant2.png" id="8_vivmo"]
 [ext_resource type="Texture2D" uid="uid://dxx5xfnrxmauo" path="res://img/Ours_avant3.png" id="9_2cqfq"]
 [ext_resource type="Texture2D" uid="uid://cwgj6l1fcfcoj" path="res://img/grass_bottom.png" id="9_4c57u"]
 [ext_resource type="Texture2D" uid="uid://by6t3ujk5um10" path="res://img/Ours_avant4.png" id="10_yaehf"]
+[ext_resource type="Texture2D" uid="uid://d1pbkjfijjdxe" path="res://img/slash1.png" id="13_074og"]
+[ext_resource type="Texture2D" uid="uid://8mwn1aho4pd" path="res://img/slash2.png" id="14_cegan"]
+[ext_resource type="Texture2D" uid="uid://bdx7tkt24tulj" path="res://img/slash3.png" id="15_82xsv"]
+[ext_resource type="Texture2D" uid="uid://ddlimudy3ne4s" path="res://img/slash4.png" id="16_getpj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
 size = Vector2(12, 12)
@@ -39,7 +45,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_4c57u")
+"texture": ExtResource("6_82xsv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_getpj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ryguw")
 }],
 "loop": true,
 "name": &"attaque",
@@ -85,6 +97,26 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
 size = Vector2(9, 12)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_ryguw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_074og")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_cegan")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_82xsv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_getpj")
+}],
+"loop": true,
+"name": &"slash",
+"speed": 5.0
+}]
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1bvp3"]
 texture = ExtResource("9_4c57u")
 0:0/0 = 0
@@ -124,7 +156,7 @@ shape = SubResource("RectangleShape2D_1bvp3")
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="Player"]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_272bh")
-animation = &"idle"
+animation = &"walking"
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(14, 8)
@@ -140,6 +172,11 @@ rotation_smoothing_enabled = true
 position = Vector2(9.5, 0)
 shape = SubResource("RectangleShape2D_h2yge")
 disabled = true
+
+[node name="slashSprite" type="AnimatedSprite2D" parent="Player/ZoneAttaque"]
+visible = false
+sprite_frames = SubResource("SpriteFrames_ryguw")
+animation = &"slash"
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 z_index = -1

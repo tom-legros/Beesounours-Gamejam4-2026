@@ -36,7 +36,8 @@ func _physics_process(_delta):
 		camera.zoom = camera.zoom.lerp(target_zoom, ZOOM_SPEED * _delta)
 	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	if direction.x != 0:
-		animated_sprite.play("walking")
+		if not is_attacking:
+			animated_sprite.play("walking")
 		if direction.x > 0:
 			animated_sprite.flip_h = false
 			zone_attaque_node.rotation_degrees = 0  
@@ -46,12 +47,13 @@ func _physics_process(_delta):
 	elif direction.y != 0:
 		animated_sprite.flip_h = false 
 		if direction.y > 0:
-			animated_sprite.play("devant")
+			if not is_attacking:
+				animated_sprite.play("devant")
 			zone_attaque_node.rotation_degrees = 90  
 		else: 
 			animated_sprite.play("arriere")         
 			zone_attaque_node.rotation_degrees = -90 
-	else:
+	elif not is_attacking:
 		animated_sprite.play("idle")
 	if direction != Vector2.ZERO:
 		velocity = direction * current_speed
@@ -61,8 +63,7 @@ func _physics_process(_delta):
 
 func lancer_attaque():
 	is_attacking = true
-	if animated_sprite:
-		animated_sprite.play("attaque")
+	animated_sprite.play("attaque")
 	collision_attaque.disabled = false
 	await get_tree().create_timer(0.4).timeout
 	collision_attaque.disabled = true
