@@ -51,6 +51,8 @@ func _physics_process(_delta):
 		else: 
 			animated_sprite.play("arriere")         
 			zone_attaque_node.rotation_degrees = -90 
+	else:
+		animated_sprite.play("idle")
 	if direction != Vector2.ZERO:
 		velocity = direction * current_speed
 	else:
