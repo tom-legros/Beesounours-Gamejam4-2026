@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var vitesse = 60
+var vitesse = 100
 var cible = null
 
 func _physics_process(_delta):
@@ -16,9 +16,7 @@ func _physics_process(_delta):
 func _on_vision_body_entered(body):
 	if body.name == "Player": 
 		cible = body
-		print("Je te vois !")
 
 func _on_vision_body_exited(body):
 	if body == cible:
 		cible = null
-		print("Il est parti...")
