@@ -159,12 +159,9 @@ position = Vector2(293, 50)
 shape = SubResource("RectangleShape2D_7mycd")
 
 [node name="Renard" parent="." instance=ExtResource("4_1bvp3")]
-position = Vector2(122, 23)
-
-[node name="Renard2" parent="." instance=ExtResource("4_1bvp3")]
-position = Vector2(146, 136)
+position = Vector2(192, 57)
 
 [node name="Renard3" parent="." instance=ExtResource("4_1bvp3")]
-position = Vector2(-119, 158)
+position = Vector2(-84, 141)
 
 [connection signal="body_entered" from="Player/ZoneAttaque" to="Player" method="_on_zone_attaque_body_entered"]
