@@ -6,7 +6,10 @@ const SPRINT_SPEED = 150
 const ZOOM_NORMAL = Vector2(5.0, 5.0) 
 const ZOOM_RUN = Vector2(3.5, 3.5) 
 const ZOOM_SPEED = 5.0
+const ATTACK_COOLDOWN := 0.6 # secondes
 
+
+var can_attack := true
 var is_attacking: bool = false
 
 
@@ -95,9 +98,10 @@ func _physics_process(_delta):
 	move_and_slide()
 
 func lancer_attaque():
-	if is_attacking:
+	if not can_attack or is_attacking:
 		return
 
+	can_attack = false
 	is_attacking = true
 	velocity = Vector2.ZERO
 
@@ -113,6 +117,10 @@ func lancer_attaque():
 	collision_attaque.disabled = true
 
 	is_attacking = false
+
+	await get_tree().create_timer(ATTACK_COOLDOWN).timeout
+	can_attack = true
+
 
 
 	
