@@ -47,4 +47,5 @@ func _on_vision_body_exited(body):
 		
 func _on_zone_degats_body_entered(body):
 	if body.name == "Player":
-		body.recevoir_degats(1) 
+		if body.has_method("recevoir_degats"):
+			body.recevoir_degats(1)

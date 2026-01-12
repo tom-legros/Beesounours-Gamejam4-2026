@@ -15,6 +15,7 @@ var is_attacking: bool = false
 @onready var sprite_ours = $PlayerSprite
 @onready var camera = $Camera2D
 @onready var animated_sprite = $PlayerSprite
+@onready var barre_vie = get_tree().current_scene.find_child("BarreVie", true, false)
 
 
 var texture_normale = preload("res://img/Ours_Walking1.png")
@@ -27,18 +28,23 @@ var pv_actuels : int = pv_max
 var est_invulnerable : bool = false 
 
 func recevoir_degats(montant: int):
-	if pv_actuels <= 0 or est_invulnerable:
+	if est_invulnerable or pv_actuels <= 0:
 		return
 	pv_actuels -= montant
-	print("AIE ! PV restants : ", pv_actuels)
-	est_invulnerable = true
+	camera.offset = Vector2(randf_range(-5, 5), randf_range(-5, 5))
+	await get_tree().create_timer(0.1).timeout
+	camera.offset = Vector2.ZERO
+	if barre_vie:
+		barre_vie.value = pv_actuels
+	print("PV restants : ", pv_actuels)
 	var tween = create_tween()
 	tween.tween_property(animated_sprite, "modulate", Color.RED, 0.1)
 	tween.tween_property(animated_sprite, "modulate", Color.WHITE, 0.1)
-	tween.set_loops(3) 
+	
 	if pv_actuels <= 0:
 		mourir()
 	else:
+		est_invulnerable = true
 		await get_tree().create_timer(1.0).timeout
 		est_invulnerable = false
 
@@ -101,5 +107,8 @@ func lancer_attaque():
 func _on_zone_attaque_body_entered(body):
 	if body == self:
 		return  
-	if body.is_in_group("Ennemis"):
-		body.queue_free()
+	if body.is_in_group("Ennemis") or body.get_parent().is_in_group("Ennemis"):
+		var cible = body if body.is_in_group("Ennemis") else body.get_parent()
+		cible.modulate = Color.WHITE * 10
+		await get_tree().create_timer(0.05).timeout
+		cible.queue_free()

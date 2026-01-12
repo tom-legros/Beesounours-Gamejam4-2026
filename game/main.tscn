@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://d2syatk0fq20k"]
+[gd_scene load_steps=31 format=4 uid="uid://d2syatk0fq20k"]
 
 [ext_resource type="Script" uid="uid://d2exudqh0ika2" path="res://player.gd" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://c4t8wew7jch15" path="res://img/Ours_arriere1.png" id="2_kek77"]
@@ -20,6 +20,8 @@
 [ext_resource type="Texture2D" uid="uid://8mwn1aho4pd" path="res://img/slash2.png" id="14_cegan"]
 [ext_resource type="Texture2D" uid="uid://bdx7tkt24tulj" path="res://img/slash3.png" id="15_82xsv"]
 [ext_resource type="Texture2D" uid="uid://ddlimudy3ne4s" path="res://img/slash4.png" id="16_getpj"]
+[ext_resource type="Texture2D" uid="uid://dnfav183kl3fw" path="res://img/barre vide.png" id="21_ryguw"]
+[ext_resource type="Texture2D" uid="uid://b1nxfq6xpc5cf" path="res://img/Barre full.png" id="22_d13ii"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
 size = Vector2(12, 12)
@@ -177,6 +179,20 @@ disabled = true
 visible = false
 sprite_frames = SubResource("SpriteFrames_ryguw")
 animation = &"slash"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Player"]
+
+[node name="BarreVie" type="TextureProgressBar" parent="Player/CanvasLayer"]
+texture_filter = 1
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 44.0
+offset_bottom = 44.0
+scale = Vector2(5.38, 5.38)
+max_value = 3.0
+value = 3.0
+texture_under = ExtResource("21_ryguw")
+texture_progress = ExtResource("22_d13ii")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 z_index = -1
