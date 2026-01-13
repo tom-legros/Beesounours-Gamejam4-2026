@@ -42,17 +42,23 @@ func recevoir_degats(montant: int, source_position: Vector2 = Vector2.ZERO):
 		var direction_recul = (global_position - source_position).normalized()
 		velocity = direction_recul * FORCE_RECUL 
 		await get_tree().create_timer(0.2).timeout
+		
 		is_knocked_back = false
 		velocity = Vector2.ZERO
+
 	camera.offset = Vector2(randf_range(-5, 5), randf_range(-5, 5))
 	await get_tree().create_timer(0.1).timeout
 	camera.offset = Vector2.ZERO
+	
 	if barre_vie:
 		barre_vie.value = pv_actuels
+	
 	print("PV restants : ", pv_actuels)
+	
 	var tween = create_tween()
 	tween.tween_property(animated_sprite, "modulate", Color.RED, 0.1)
 	tween.tween_property(animated_sprite, "modulate", Color.WHITE, 0.1)
+	
 	if pv_actuels <= 0:
 		mourir()
 	else:
