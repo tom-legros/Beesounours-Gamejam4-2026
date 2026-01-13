@@ -60,6 +60,7 @@ func recevoir_degats(montant: int, source_position: Vector2 = Vector2.ZERO):
 		est_invulnerable = false
 
 func mourir():
+	animated_sprite.play("mourrir")
 	set_physics_process(false) 
 	await get_tree().create_timer(1.5).timeout
 	get_tree().reload_current_scene()
@@ -73,7 +74,7 @@ func _physics_process(_delta):
 		lancer_attaque()
 	var current_speed = WALK_SPEED
 	var target_zoom = ZOOM_NORMAL 
-	if Input.is_key_pressed(KEY_SHIFT):
+	if Input.is_key_pressed(KEY_SHIFT) and pv_actuels >0:
 		current_speed = SPRINT_SPEED
 		target_zoom = ZOOM_RUN
 		animated_sprite.speed_scale = 4
