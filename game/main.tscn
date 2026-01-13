@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://d2syatk0fq20k"]
+[gd_scene load_steps=44 format=4 uid="uid://d2syatk0fq20k"]
 
 [ext_resource type="Script" uid="uid://d2exudqh0ika2" path="res://player.gd" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://c4t8wew7jch15" path="res://img/Ours_arriere1.png" id="2_kek77"]
@@ -17,9 +17,17 @@
 [ext_resource type="Texture2D" uid="uid://cwgj6l1fcfcoj" path="res://img/grass_bottom.png" id="9_4c57u"]
 [ext_resource type="Texture2D" uid="uid://by6t3ujk5um10" path="res://img/Ours_avant4.png" id="10_yaehf"]
 [ext_resource type="Texture2D" uid="uid://d1pbkjfijjdxe" path="res://img/slash1.png" id="13_074og"]
+[ext_resource type="Texture2D" uid="uid://iigsku22q46" path="res://img/ours_mort1.png" id="13_htxhm"]
 [ext_resource type="Texture2D" uid="uid://8mwn1aho4pd" path="res://img/slash2.png" id="14_cegan"]
+[ext_resource type="Texture2D" uid="uid://ctome1df3l86i" path="res://img/ours_mort2.png" id="14_jq2sk"]
+[ext_resource type="Texture2D" uid="uid://cotuw0bqrwrfy" path="res://img/ours_mort3.png" id="15_4k2k6"]
 [ext_resource type="Texture2D" uid="uid://bdx7tkt24tulj" path="res://img/slash3.png" id="15_82xsv"]
+[ext_resource type="Texture2D" uid="uid://gbt2yumbvdhh" path="res://img/ours_mort4.png" id="16_0rl1p"]
 [ext_resource type="Texture2D" uid="uid://ddlimudy3ne4s" path="res://img/slash4.png" id="16_getpj"]
+[ext_resource type="Texture2D" uid="uid://h58xxotjeuma" path="res://img/ours_mort5.png" id="17_ok6jj"]
+[ext_resource type="Texture2D" uid="uid://oie2hvoc28g4" path="res://img/ours_mort6.png" id="18_facbu"]
+[ext_resource type="Texture2D" uid="uid://vua1c1k1dif0" path="res://img/ours_mort7.png" id="19_b1qrp"]
+[ext_resource type="Texture2D" uid="uid://bs1letbqwa7sa" path="res://img/ours_mort8.png" id="20_come4"]
 [ext_resource type="Texture2D" uid="uid://dnfav183kl3fw" path="res://img/barre vide.png" id="21_ryguw"]
 [ext_resource type="Texture2D" uid="uid://b1nxfq6xpc5cf" path="res://img/Barre full.png" id="22_d13ii"]
 [ext_resource type="Texture2D" uid="uid://c10gaix0jpovx" path="res://img/tree1.png" id="23_1u8w0"]
@@ -85,6 +93,35 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_htxhm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_jq2sk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_4k2k6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_0rl1p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_ok6jj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_facbu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_b1qrp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_come4")
+}],
+"loop": false,
+"name": &"mourrir",
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -201,7 +238,7 @@ shape = SubResource("RectangleShape2D_1bvp3")
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="Player"]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_272bh")
-animation = &"walking"
+animation = &"mourrir"
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(14, 8)
