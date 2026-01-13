@@ -338,14 +338,13 @@ collision_mask = 3
 [node name="Loup" parent="." instance=ExtResource("23_d13ii")]
 position = Vector2(246, -86)
 
-[node name="mapHoney" type="Node" parent="."]
+[node name="mapHoney" type="Node2D" parent="."]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="mapHoney"]
 texture_filter = 1
 tile_set = SubResource("TileSet_ok6jj")
 
 [node name="map" type="Node2D" parent="."]
-visible = false
 
 [node name="grass" type="TileMapLayer" parent="map"]
 z_index = -4
