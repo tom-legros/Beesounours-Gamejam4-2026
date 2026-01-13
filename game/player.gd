@@ -15,7 +15,7 @@ var is_knocked_back : bool = false
 var is_small: bool = false
 
 @export var normal_scale: Vector2 = Vector2(1.0, 1.0)
-@export var small_scale: Vector2 = Vector2(0.1, 0.1) # 10x plus petit
+@export var small_scale: Vector2 = Vector2(0.5, 0.5) 
 @export var shrink_duration: float = 0.5
 
 @onready var zone_attaque_node = $ZoneAttaque 
@@ -78,6 +78,8 @@ func _physics_process(_delta):
 		lancer_attaque()
 	if Input.is_key_pressed(KEY_A) and is_small == false:
 		retrecir()
+	if Input.is_key_pressed(KEY_E) and is_small == true:
+		agrandir()
 	var current_speed = WALK_SPEED
 	var target_zoom = ZOOM_NORMAL 
 	if Input.is_key_pressed(KEY_SHIFT) and pv_actuels >0:
@@ -162,6 +164,20 @@ func retrecir():
 		target_zoom = Vector2(1.0, 1.0) 
 	else:
 		target_scale = small_scale
+		target_zoom = Vector2(4.0, 4.0) 
+
+	is_small = !is_small
+	apply_shrink_effect(target_scale, target_zoom)
+
+func agrandir():
+	var target_scale
+	var target_zoom
+	
+	if not is_small:
+		target_scale = small_scale
+		target_zoom = Vector2(4.0, 4.0) 
+	else:
+		target_scale = normal_scale
 		target_zoom = Vector2(4.0, 4.0) 
 
 	is_small = !is_small
