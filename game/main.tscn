@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://d2syatk0fq20k"]
+[gd_scene load_steps=32 format=4 uid="uid://d2syatk0fq20k"]
 
 [ext_resource type="Script" uid="uid://d2exudqh0ika2" path="res://player.gd" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://c4t8wew7jch15" path="res://img/Ours_arriere1.png" id="2_kek77"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://ddlimudy3ne4s" path="res://img/slash4.png" id="16_getpj"]
 [ext_resource type="Texture2D" uid="uid://dnfav183kl3fw" path="res://img/barre vide.png" id="21_ryguw"]
 [ext_resource type="Texture2D" uid="uid://b1nxfq6xpc5cf" path="res://img/Barre full.png" id="22_d13ii"]
+[ext_resource type="PackedScene" uid="uid://dg4v2ju86qprl" path="res://Loup.tscn" id="23_d13ii"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
 size = Vector2(10, 14)
@@ -230,6 +231,9 @@ position = Vector2(192, 57)
 
 [node name="Renard3" parent="." instance=ExtResource("4_1bvp3")]
 position = Vector2(-84, 141)
+
+[node name="Loup" parent="." instance=ExtResource("23_d13ii")]
+position = Vector2(246, -86)
 
 [connection signal="body_entered" from="Player/ZoneAttaque" to="Player" method="_on_zone_attaque_body_entered"]
 [connection signal="animation_finished" from="Player/ZoneAttaque/SlashSprite" to="Player" method="_on_slash_sprite_animation_finished"]

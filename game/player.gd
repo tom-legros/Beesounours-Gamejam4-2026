@@ -6,7 +6,7 @@ const SPRINT_SPEED = 150
 const ZOOM_NORMAL = Vector2(5.0, 5.0) 
 const ZOOM_RUN = Vector2(3.5, 3.5) 
 const ZOOM_SPEED = 5.0
-const ATTACK_COOLDOWN := 0.6 # secondes
+const ATTACK_COOLDOWN := 0.6 
 
 
 var can_attack := true
@@ -41,7 +41,6 @@ func recevoir_degats(montant: int):
 	camera.offset = Vector2.ZERO
 	if barre_vie:
 		barre_vie.value = pv_actuels
-	print("PV restants : ", pv_actuels)
 	var tween = create_tween()
 	tween.tween_property(animated_sprite, "modulate", Color.RED, 0.1)
 	tween.tween_property(animated_sprite, "modulate", Color.WHITE, 0.1)
@@ -54,7 +53,6 @@ func recevoir_degats(montant: int):
 		est_invulnerable = false
 
 func mourir():
-	print("L'ours a rendu l'âme...")
 	set_physics_process(false) 
 	await get_tree().create_timer(1.5).timeout
 	get_tree().reload_current_scene()
@@ -104,20 +102,16 @@ func lancer_attaque():
 	can_attack = false
 	is_attacking = true
 	velocity = Vector2.ZERO
-
 	animated_sprite.play("attaque")
 
 	await get_tree().create_timer(0.15).timeout
 	collision_attaque.disabled = false
-
 	slash_sprite.visible = true
 	slash_sprite.play("slash")
 
 	await get_tree().create_timer(0.25).timeout
 	collision_attaque.disabled = true
-
 	is_attacking = false
-
 	await get_tree().create_timer(ATTACK_COOLDOWN).timeout
 	can_attack = true
 
