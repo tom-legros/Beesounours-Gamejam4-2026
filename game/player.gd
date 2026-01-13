@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 const WALK_SPEED = 70
 const SPRINT_SPEED = 150
-
 const ZOOM_NORMAL = Vector2(5.0, 5.0) 
 const ZOOM_RUN = Vector2(3.5, 3.5) 
 const ZOOM_SPEED = 5.0
@@ -115,7 +114,7 @@ func lancer_attaque():
 	velocity = Vector2.ZERO
 	animated_sprite.play("attaque")
 
-	await get_tree().create_timer(0.15).timeout
+	
 	collision_attaque.disabled = false
 	slash_sprite.visible = true
 	slash_sprite.play("slash")
