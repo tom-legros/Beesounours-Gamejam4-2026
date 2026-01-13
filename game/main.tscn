@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://d2syatk0fq20k"]
+[gd_scene load_steps=50 format=4 uid="uid://d2syatk0fq20k"]
 
 [ext_resource type="Script" uid="uid://d2exudqh0ika2" path="res://player.gd" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://c4t8wew7jch15" path="res://img/Ours_arriere1.png" id="2_kek77"]
@@ -32,6 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://b1nxfq6xpc5cf" path="res://img/Barre full.png" id="22_d13ii"]
 [ext_resource type="Texture2D" uid="uid://c10gaix0jpovx" path="res://img/tree1.png" id="23_1u8w0"]
 [ext_resource type="PackedScene" uid="uid://dg4v2ju86qprl" path="res://Loup.tscn" id="23_d13ii"]
+[ext_resource type="Texture2D" uid="uid://ceyj6uy0615mu" path="res://img/honey_bottom_tile.png" id="31_4k2k6"]
 [ext_resource type="Texture2D" uid="uid://nddkfoss7n08" path="res://img/grass_thingy.png" id="31_jq2sk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
@@ -164,6 +165,21 @@ size = Vector2(720, 7.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7mycd"]
 size = Vector2(12.75, 528)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0rl1p"]
+texture = ExtResource("31_4k2k6")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ok6jj"]
+sources/0 = SubResource("TileSetAtlasSource_0rl1p")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1bvp3"]
 texture = ExtResource("9_4c57u")
@@ -319,7 +335,17 @@ position = Vector2(-84, 141)
 collision_layer = 3
 collision_mask = 3
 
+[node name="Loup" parent="." instance=ExtResource("23_d13ii")]
+position = Vector2(246, -86)
+
+[node name="mapHoney" type="Node" parent="."]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="mapHoney"]
+texture_filter = 1
+tile_set = SubResource("TileSet_ok6jj")
+
 [node name="map" type="Node2D" parent="."]
+visible = false
 
 [node name="grass" type="TileMapLayer" parent="map"]
 z_index = -4
@@ -340,9 +366,6 @@ position = Vector2(-2, -1)
 scale = Vector2(2, 2)
 tile_map_data = PackedByteArray("AAD8////AAAAAAAAAAD9//v/AAAAAAAAAAD9//z/AAAAAAEAAAD+//v/AAABAAAAAAD+//z/AAABAAEAAAD+//3/AAABAAIAAAD///v/AAACAAAAAAD///z/AAAAAAAAAAACAPv/AAAAAAAAAAACAPz/AAAAAAEAAAADAPv/AAABAAAAAAADAPz/AAABAAEAAAADAP3/AAABAAIAAAAEAPv/AAACAAAAAAAEAPz/AAACAAEAAAD8/wAAAAAAAAEAAAD9/wAAAAABAAEAAAD9/wEAAAABAAIAAAD+////AAACAAAAAAD+/wAAAAACAAEAAAD///3/AAAAAAEAAAAAAPz/AAABAAAAAAAAAP3/AAABAAEAAAAAAP7/AAABAAIAAAABAP3/AAACAAEAAAAFAPv/AAAAAAAAAAAFAPz/AAAAAAEAAAAGAPv/AAABAAAAAAAGAPz/AAABAAEAAAAGAP3/AAABAAIAAAAHAPv/AAACAAAAAAAHAPz/AAACAAEAAAADAP7/AAAAAAAAAAADAP//AAAAAAEAAAAEAP7/AAABAAAAAAAEAP//AAABAAEAAAAEAAAAAAABAAIAAAAFAP7/AAACAAAAAAAFAP//AAACAAEAAAD6//z/AAAAAAAAAAD6//3/AAAAAAEAAAD7//z/AAABAAAAAAD7//3/AAABAAEAAAD7//7/AAABAAIAAAD8//z/AAACAAAAAAD8//3/AAACAAEAAAD9////AAABAAAAAAD2//j/AAAAAAAAAAD2//n/AAAAAAEAAAD3//j/AAABAAAAAAD3//n/AAABAAEAAAD3//r/AAABAAIAAAD4//j/AAACAAAAAAD4//n/AAACAAEAAAD3//z/AAAAAAAAAAD3//3/AAAAAAEAAAD4//z/AAABAAAAAAD4//3/AAABAAEAAAD4//7/AAABAAIAAAD5//z/AAACAAAAAAD5//3/AAACAAEAAAD5//n/AAAAAAAAAAD5//r/AAAAAAEAAAD6//n/AAABAAAAAAD6//r/AAABAAEAAAD6//v/AAABAAIAAAD7//n/AAACAAAAAAD7//r/AAACAAEAAAD3/wEAAAAAAAAAAAD3/wIAAAAAAAEAAAD4/wEAAAABAAAAAAD4/wIAAAABAAEAAAD4/wMAAAABAAIAAAD5/wEAAAACAAAAAAD5/wIAAAACAAEAAAD5////AAAAAAAAAAD5/wAAAAAAAAEAAAD6////AAABAAAAAAD6/wAAAAABAAEAAAD6/wEAAAABAAIAAAD7////AAACAAAAAAD7/wAAAAACAAEAAAD8//j/AAAAAAAAAAD8//n/AAAAAAEAAAD9//j/AAABAAAAAAD9//n/AAABAAEAAAD9//r/AAABAAIAAAD+//j/AAACAAAAAAD+//n/AAACAAEAAAABAPj/AAAAAAAAAAABAPn/AAAAAAEAAAACAPj/AAABAAAAAAACAPn/AAABAAEAAAACAPr/AAABAAIAAAADAPj/AAACAAAAAAADAPn/AAACAAEAAAA=")
 tile_set = SubResource("TileSet_lswn8")
-
-[node name="Loup" parent="." instance=ExtResource("23_d13ii")]
-position = Vector2(246, -86)
 
 [connection signal="body_entered" from="Player/ZoneAttaque" to="Player" method="_on_zone_attaque_body_entered"]
 [connection signal="animation_finished" from="Player/ZoneAttaque/SlashSprite" to="Player" method="_on_slash_sprite_animation_finished"]
