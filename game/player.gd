@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 const WALK_SPEED = 70
 const SPRINT_SPEED = 150
+
 const ZOOM_NORMAL = Vector2(5.0, 5.0) 
 const ZOOM_RUN = Vector2(3.5, 3.5) 
 const ZOOM_SPEED = 5.0
@@ -150,7 +151,6 @@ func _on_zone_attaque_body_entered(body):
 			ennemi.subir_degats()
 		else:
 			ennemi.queue_free()
-
 
 func _on_slash_sprite_animation_finished():
 	slash_sprite.visible = false
