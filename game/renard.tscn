@@ -10,6 +10,7 @@ size = Vector2(16, 11.612908)
 radius = 76.00658
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mede7"]
+radius = 14.035668
 
 [node name="Renard" type="CharacterBody2D" groups=["Ennemis"]]
 position = Vector2(0, -1)
