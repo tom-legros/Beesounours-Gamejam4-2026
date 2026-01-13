@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 const WALK_SPEED = 70
 const SPRINT_SPEED = 150
-
 const ZOOM_NORMAL = Vector2(5.0, 5.0) 
 const ZOOM_RUN = Vector2(3.5, 3.5) 
 const ZOOM_SPEED = 5.0
@@ -13,7 +12,11 @@ const FORCE_RECUL = 400
 var can_attack := true
 var is_attacking: bool = false
 var is_knocked_back : bool = false
+var is_small: bool = false
 
+@export var normal_scale: Vector2 = Vector2(1.0, 1.0)
+@export var small_scale: Vector2 = Vector2(0.5, 0.5) 
+@export var shrink_duration: float = 0.5
 
 @onready var zone_attaque_node = $ZoneAttaque 
 @onready var collision_attaque = $ZoneAttaque/CollisionShape2D
@@ -67,6 +70,7 @@ func recevoir_degats(montant: int, source_position: Vector2 = Vector2.ZERO):
 		est_invulnerable = false
 
 func mourir():
+	animated_sprite.play("mourrir")
 	set_physics_process(false) 
 	await get_tree().create_timer(1.5).timeout
 	get_tree().reload_current_scene()
@@ -78,9 +82,13 @@ func _physics_process(_delta):
 	animated_sprite.speed_scale = 1
 	if Input.is_key_pressed(KEY_SPACE) and is_attacking == false:
 		lancer_attaque()
+	if Input.is_key_pressed(KEY_A) and is_small == false:
+		retrecir()
+	if Input.is_key_pressed(KEY_E) and is_small == true:
+		agrandir()
 	var current_speed = WALK_SPEED
 	var target_zoom = ZOOM_NORMAL 
-	if Input.is_key_pressed(KEY_SHIFT):
+	if Input.is_key_pressed(KEY_SHIFT) and pv_actuels >0:
 		current_speed = SPRINT_SPEED
 		target_zoom = ZOOM_RUN
 		animated_sprite.speed_scale = 4
@@ -121,7 +129,7 @@ func lancer_attaque():
 	velocity = Vector2.ZERO
 	animated_sprite.play("attaque")
 
-	await get_tree().create_timer(0.15).timeout
+	
 	collision_attaque.disabled = false
 	slash_sprite.visible = true
 	slash_sprite.play("slash")
@@ -152,3 +160,37 @@ func _on_zone_attaque_body_entered(body):
 
 func _on_slash_sprite_animation_finished():
 	slash_sprite.visible = false
+
+func retrecir():
+	var target_scale
+	var target_zoom
+	
+	if is_small:
+		target_scale = normal_scale
+		target_zoom = Vector2(1.0, 1.0) 
+	else:
+		target_scale = small_scale
+		target_zoom = Vector2(4.0, 4.0) 
+
+	is_small = !is_small
+	apply_shrink_effect(target_scale, target_zoom)
+
+func agrandir():
+	var target_scale
+	var target_zoom
+	
+	if not is_small:
+		target_scale = small_scale
+		target_zoom = Vector2(4.0, 4.0) 
+	else:
+		target_scale = normal_scale
+		target_zoom = Vector2(4.0, 4.0) 
+
+	is_small = !is_small
+	apply_shrink_effect(target_scale, target_zoom)
+
+func apply_shrink_effect(final_scale: Vector2, final_zoom: Vector2):
+	var tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "scale", final_scale, shrink_duration)
+	if camera:
+		tween.tween_property(camera, "zoom", final_zoom, shrink_duration)
