@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://d2syatk0fq20k"]
+[gd_scene load_steps=36 format=4 uid="uid://d2syatk0fq20k"]
 
 [ext_resource type="Script" uid="uid://d2exudqh0ika2" path="res://player.gd" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://c4t8wew7jch15" path="res://img/Ours_arriere1.png" id="2_kek77"]
@@ -22,7 +22,8 @@
 [ext_resource type="Texture2D" uid="uid://ddlimudy3ne4s" path="res://img/slash4.png" id="16_getpj"]
 [ext_resource type="Texture2D" uid="uid://dnfav183kl3fw" path="res://img/barre vide.png" id="21_ryguw"]
 [ext_resource type="Texture2D" uid="uid://b1nxfq6xpc5cf" path="res://img/Barre full.png" id="22_d13ii"]
-[ext_resource type="Texture2D" uid="uid://c10gaix0jpovx" path="res://img/tree1.png" id="23_d13ii"]
+[ext_resource type="Texture2D" uid="uid://c10gaix0jpovx" path="res://img/tree1.png" id="23_1u8w0"]
+[ext_resource type="PackedScene" uid="uid://dg4v2ju86qprl" path="res://Loup.tscn" id="23_d13ii"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
 size = Vector2(10, 14)
@@ -141,7 +142,6 @@ texture = ExtResource("9_4c57u")
 2:2/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1u8w0"]
-texture = ExtResource("23_d13ii")
 0:0/0 = 0
 0:0/0/z_index = -2
 1:0/0 = 0
@@ -163,7 +163,7 @@ sources/0 = SubResource("TileSetAtlasSource_1bvp3")
 sources/1 = SubResource("TileSetAtlasSource_1u8w0")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0odxb"]
-texture = ExtResource("23_d13ii")
+texture = ExtResource("23_1u8w0")
 0:0/0 = 0
 0:0/0/z_index = 1
 1:0/0 = 0
@@ -174,11 +174,11 @@ texture = ExtResource("23_d13ii")
 0:1/0/z_index = 1
 1:1/0 = 0
 1:1/0/z_index = 1
-1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-5.333333, 5.333334, -5.333333, 8, 5.333334, 8, 5.333334, 5.333334)
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-5.333333, 5.333334, 5.333334, 5.333334, 5.333334, 8, -5.333333, 8)
 2:1/0 = 0
 2:1/0/z_index = 1
 1:2/0 = 0
-1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-5.333333, -8, -5.333333, 0, 5.333334, 0, 5.333334, -8)
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-5.333333, -8, 5.333334, -8, 5.333334, 0, -5.333333, 0)
 
 [sub_resource type="TileSet" id="TileSet_lswn8"]
 physics_layer_0/collision_layer = 3
@@ -287,6 +287,9 @@ position = Vector2(-2, -1)
 scale = Vector2(2, 2)
 tile_map_data = PackedByteArray("AAD8////AAAAAAAAAAD9//v/AAAAAAAAAAD9//z/AAAAAAEAAAD+//v/AAABAAAAAAD+//z/AAABAAEAAAD+//3/AAABAAIAAAD///v/AAACAAAAAAD///z/AAAAAAAAAAACAPv/AAAAAAAAAAACAPz/AAAAAAEAAAADAPv/AAABAAAAAAADAPz/AAABAAEAAAADAP3/AAABAAIAAAAEAPv/AAACAAAAAAAEAPz/AAACAAEAAAD8/wAAAAAAAAEAAAD9/wAAAAABAAEAAAD9/wEAAAABAAIAAAD+////AAACAAAAAAD+/wAAAAACAAEAAAD///3/AAAAAAEAAAAAAPz/AAABAAAAAAAAAP3/AAABAAEAAAAAAP7/AAABAAIAAAABAPz/AAACAAAAAAABAP3/AAACAAEAAAAFAPv/AAAAAAAAAAAFAPz/AAAAAAEAAAAGAPv/AAABAAAAAAAGAPz/AAABAAEAAAAGAP3/AAABAAIAAAAHAPv/AAACAAAAAAAHAPz/AAACAAEAAAADAP7/AAAAAAAAAAADAP//AAAAAAEAAAAEAP7/AAABAAAAAAAEAP//AAABAAEAAAAEAAAAAAABAAIAAAAFAP7/AAACAAAAAAAFAP//AAACAAEAAAD6//z/AAAAAAAAAAD6//3/AAAAAAEAAAD7//z/AAABAAAAAAD7//3/AAABAAEAAAD7//7/AAABAAIAAAD8//z/AAACAAAAAAD8//3/AAACAAEAAAD9////AAABAAAAAAA=")
 tile_set = SubResource("TileSet_lswn8")
+
+[node name="Loup" parent="." instance=ExtResource("23_d13ii")]
+position = Vector2(246, -86)
 
 [connection signal="body_entered" from="Player/ZoneAttaque" to="Player" method="_on_zone_attaque_body_entered"]
 [connection signal="animation_finished" from="Player/ZoneAttaque/SlashSprite" to="Player" method="_on_slash_sprite_animation_finished"]
