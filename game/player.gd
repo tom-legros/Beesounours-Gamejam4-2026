@@ -7,11 +7,17 @@ const ZOOM_NORMAL = Vector2(5.0, 5.0)
 const ZOOM_RUN = Vector2(3.5, 3.5) 
 const ZOOM_SPEED = 5.0
 const ATTACK_COOLDOWN := 0.6 
+const FORCE_RECUL = 400
 
 
 var can_attack := true
 var is_attacking: bool = false
+var is_knocked_back : bool = false
+var is_small: bool = false
 
+@export var normal_scale: Vector2 = Vector2(1.0, 1.0)
+@export var small_scale: Vector2 = Vector2(0.5, 0.5) 
+@export var shrink_duration: float = 0.5
 
 @onready var zone_attaque_node = $ZoneAttaque 
 @onready var collision_attaque = $ZoneAttaque/CollisionShape2D
@@ -31,16 +37,28 @@ var pv_max : int = 3
 var pv_actuels : int = pv_max
 var est_invulnerable : bool = false 
 
-
-func recevoir_degats(montant: int):
+func recevoir_degats(montant: int, source_position: Vector2 = Vector2.ZERO):
 	if est_invulnerable or pv_actuels <= 0:
 		return
 	pv_actuels -= montant
+	if source_position != Vector2.ZERO:
+		is_knocked_back = true
+		var direction_recul = (global_position - source_position).normalized()
+		velocity = direction_recul * FORCE_RECUL 
+		await get_tree().create_timer(0.2).timeout
+		
+		is_knocked_back = false
+		velocity = Vector2.ZERO
+
 	camera.offset = Vector2(randf_range(-5, 5), randf_range(-5, 5))
 	await get_tree().create_timer(0.1).timeout
 	camera.offset = Vector2.ZERO
+	
 	if barre_vie:
 		barre_vie.value = pv_actuels
+	
+	print("PV restants : ", pv_actuels)
+	
 	var tween = create_tween()
 	tween.tween_property(animated_sprite, "modulate", Color.RED, 0.1)
 	tween.tween_property(animated_sprite, "modulate", Color.WHITE, 0.1)
@@ -59,16 +77,22 @@ func mourir():
 	get_tree().reload_current_scene()
 
 func _physics_process(_delta):
+	if is_knocked_back:
+		move_and_slide()
+		return
 	animated_sprite.speed_scale = 1
 	if Input.is_key_pressed(KEY_SPACE) and is_attacking == false:
 		lancer_attaque()
+	if Input.is_key_pressed(KEY_A) and is_small == false:
+		retrecir()
+	if Input.is_key_pressed(KEY_E) and is_small == true:
+		agrandir()
 	var current_speed = WALK_SPEED
 	var target_zoom = ZOOM_NORMAL 
-	if pv_actuels >= 0:
-		if Input.is_key_pressed(KEY_SHIFT):
-			current_speed = SPRINT_SPEED
-			target_zoom = ZOOM_RUN
-			animated_sprite.speed_scale = 4
+	if Input.is_key_pressed(KEY_SHIFT) and pv_actuels >0:
+		current_speed = SPRINT_SPEED
+		target_zoom = ZOOM_RUN
+		animated_sprite.speed_scale = 4
 	if camera:
 		camera.zoom = camera.zoom.lerp(target_zoom, ZOOM_SPEED * _delta)
 	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -106,7 +130,7 @@ func lancer_attaque():
 	velocity = Vector2.ZERO
 	animated_sprite.play("attaque")
 
-	await get_tree().create_timer(0.15).timeout
+	
 	collision_attaque.disabled = false
 	slash_sprite.visible = true
 	slash_sprite.play("slash")
@@ -134,6 +158,39 @@ func _on_zone_attaque_body_entered(body):
 		else:
 			ennemi.queue_free()
 
-
 func _on_slash_sprite_animation_finished():
 	slash_sprite.visible = false
+
+func retrecir():
+	var target_scale
+	var target_zoom
+	
+	if is_small:
+		target_scale = normal_scale
+		target_zoom = Vector2(1.0, 1.0) 
+	else:
+		target_scale = small_scale
+		target_zoom = Vector2(4.0, 4.0) 
+
+	is_small = !is_small
+	apply_shrink_effect(target_scale, target_zoom)
+
+func agrandir():
+	var target_scale
+	var target_zoom
+	
+	if not is_small:
+		target_scale = small_scale
+		target_zoom = Vector2(4.0, 4.0) 
+	else:
+		target_scale = normal_scale
+		target_zoom = Vector2(4.0, 4.0) 
+
+	is_small = !is_small
+	apply_shrink_effect(target_scale, target_zoom)
+
+func apply_shrink_effect(final_scale: Vector2, final_zoom: Vector2):
+	var tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "scale", final_scale, shrink_duration)
+	if camera:
+		tween.tween_property(camera, "zoom", final_zoom, shrink_duration)
