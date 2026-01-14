@@ -7,4 +7,4 @@ func _ready() -> void:
 
 func _on_body_entered(body:Node2D)->void:
 	if body == Player:
-		body.global_position=Vector2(2130,55)
+		_body.global_position=Vector2(2130,55)
