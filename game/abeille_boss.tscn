@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://but2q0a2kjfvr" path="res://img/Abeille.png" id="1_yyfx8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yyfx8"]
-radius = 29.017237
+radius = 23.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sttjn"]
-radius = 34.0147
+radius = 28.01785
 
 [node name="AbeilleBoss" type="CharacterBody2D" groups=["Ennemis"]]
 script = ExtResource("1_sttjn")
@@ -18,14 +18,14 @@ scale = Vector2(2.2, 2.2)
 texture = ExtResource("1_yyfx8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Ennemis"]]
-position = Vector2(2, -3)
+position = Vector2(4, -3)
 shape = SubResource("CircleShape2D_yyfx8")
 
 [node name="ZoneDegats" type="Area2D" parent="."]
 position = Vector2(1, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZoneDegats"]
-position = Vector2(0, -4)
+position = Vector2(3, -3)
 shape = SubResource("CircleShape2D_sttjn")
 
 [connection signal="body_entered" from="ZoneDegats" to="." method="_on_zone_degats_body_entered"]

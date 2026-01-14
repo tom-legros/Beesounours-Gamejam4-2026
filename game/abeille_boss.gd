@@ -3,7 +3,7 @@ extends CharacterBody2D
 var pv : int = 7 
 var vitesse_normale = 40
 var vitesse_charge = 400 
-var acc_charge = 1200
+var acc_charge = 800
 
 var est_invulnerable : bool = false
 var peut_attaquer : bool = true
@@ -33,9 +33,9 @@ func _physics_process(delta):
 
 func boucle_attaque():
 	while pv > 0:
-		var temps_attente = 3.0
+		var temps_attente = 6.5
 		if pv <= 3: 
-			temps_attente = 1.5 
+			temps_attente = 4.0
 		
 		await get_tree().create_timer(temps_attente).timeout
 		if pv <= 0: break 

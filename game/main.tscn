@@ -361,7 +361,7 @@ size = Vector2(12, 16)
 
 [node name="Player" type="CharacterBody2D" parent="."]
 z_index = 1
-position = Vector2(340, -179)
+position = Vector2(1940, 101)
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_0xm2m")
@@ -546,19 +546,6 @@ z_index = -5
 texture_filter = 1
 tile_map_data = PackedByteArray("AADs/xYAAQAAAAAAAADs/xcAAQAAAAAAAADs/xgAAQAAAAAAAADs/x0AAQAAAAAAAADs/xwAAQAAAAAAAADs/xsAAQAAAAAAAADs/xoAAQAAAAAAAADs/xkAAQAAAAAAAADt/xkAAQAAAAAAAADt/xgAAQAAAAAAAADt/xcAAQAAAAAAAADt/xYAAQAAAAAAAADt/xoAAQAAAAAAAADt/xsAAQAAAAAAAADt/xwAAQAAAAAAAADt/x0AAQAAAAAAAAA=")
 tile_set = SubResource("TileSet_h8e4i")
-
-[node name="AbeilleBoss" parent="map"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
-position = Vector2(292, -87)
-script = null
 
 [node name="portal" type="Area2D" parent="."]
 position = Vector2(360, 636)

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b8dpydj1rfrvx" path="res://img/loup.png" id="2_0jcpr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0jcpr"]
-radius = 5.653262
+radius = 8.8
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kv4hg"]
 radius = 174.01149
@@ -12,7 +12,7 @@ radius = 174.01149
 [sub_resource type="CircleShape2D" id="CircleShape2D_mede7"]
 radius = 15.033297
 
-[node name="Loup" type="CharacterBody2D"]
+[node name="Loup" type="CharacterBody2D" groups=["Ennemis"]]
 position = Vector2(0, -1)
 script = ExtResource("1_0jcpr")
 
@@ -23,7 +23,7 @@ scale = Vector2(1.25, 1.2916666)
 texture = ExtResource("2_0jcpr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Ennemis"]]
-position = Vector2(1, 1.9999998)
+position = Vector2(1, 2.0000002)
 scale = Vector2(1.25, 1.2916662)
 shape = SubResource("CircleShape2D_0jcpr")
 
