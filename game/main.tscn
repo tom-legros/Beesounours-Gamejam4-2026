@@ -392,10 +392,16 @@ value = 3.0
 texture_under = ExtResource("21_ryguw")
 texture_progress = ExtResource("22_d13ii")
 
-[node name="BarreEndurance" type="TextureProgressBar" parent="Player/CanvasLayer"]
+[node name="CanvasLayer2" type="CanvasLayer" parent="Player"]
+scale = Vector2(2.305, 2.305)
+transform = Transform2D(2.305, 0, 0, 2.305, 0, 0)
+
+[node name="BarreEndurance" type="TextureProgressBar" parent="Player/CanvasLayer2"]
 texture_filter = 1
-offset_right = 64.0
-offset_bottom = 64.0
+offset_left = -1.3015184
+offset_top = 13.015186
+offset_right = 69.69848
+offset_bottom = 77.01518
 texture_under = ExtResource("29_4lmeg")
 texture_progress = ExtResource("30_0cp0l")
 
