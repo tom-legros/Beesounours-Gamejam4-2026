@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var pv : int = 7 
+var pv : int = 15
 var vitesse_normale = 40
 var vitesse_charge = 400 
 var acc_charge = 800
@@ -33,9 +33,9 @@ func _physics_process(delta):
 
 func boucle_attaque():
 	while pv > 0:
-		var temps_attente = 6.5
+		var temps_attente = 4
 		if pv <= 3: 
-			temps_attente = 4.0
+			temps_attente = 2
 		
 		await get_tree().create_timer(temps_attente).timeout
 		if pv <= 0: break 
@@ -48,7 +48,7 @@ func boucle_attaque():
 		en_train_de_charger = true
 		
 		if joueur_cible:
-			var direction_dash = global_position.direction_to(joueur_cible.global_position)
+			var direction_dash = global_position.direction_to(joueur_cible.global_position)*0.1
 			velocity = direction_dash * vitesse_charge
 		
 		await get_tree().create_timer(0.5).timeout
