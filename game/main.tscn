@@ -1,4 +1,6 @@
-[gd_scene load_steps=67 format=4 uid="uid://cs141t3nfd1h3"]
+
+[gd_scene load_steps=70 format=4 uid="uid://cs141t3nfd1h3"]
+
 
 [ext_resource type="Script" uid="uid://d2exudqh0ika2" path="res://player.gd" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://c4t8wew7jch15" path="res://img/Ours_arriere1.png" id="2_kek77"]
@@ -40,7 +42,10 @@
 [ext_resource type="Texture2D" uid="uid://cnduaxuhy2aqj" path="res://img/side_trees.png" id="36_ok6jj"]
 [ext_resource type="Texture2D" uid="uid://dxqcwri6w65m0" path="res://img/buche pont fin.png" id="37_b1qrp"]
 [ext_resource type="Texture2D" uid="uid://b8ddqioe4sehh" path="res://img/buche pont.png" id="38_come4"]
+
 [ext_resource type="PackedScene" uid="uid://bm1jh4pfwh24l" path="res://abeille_boss.tscn" id="41_4lmeg"]
+[ext_resource type="Script" uid="uid://c4ifj0k7q27ph" path="res://area_2d.gd" id="41_4lmeg"]
+
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
 size = Vector2(10, 14)
@@ -175,6 +180,12 @@ size = Vector2(12.75, 976)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b1qrp"]
 size = Vector2(9, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h8e4i"]
+size = Vector2(657.5, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4lmeg"]
+size = Vector2(13, 496)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0rl1p"]
 texture = ExtResource("31_4k2k6")
@@ -347,6 +358,9 @@ texture = ExtResource("33_0rl1p")
 [sub_resource type="TileSet" id="TileSet_h8e4i"]
 sources/1 = SubResource("TileSetAtlasSource_come4")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0cp0l"]
+size = Vector2(12, 16)
+
 [node name="Node2D" type="Node2D"]
 
 [node name="Player" type="CharacterBody2D" parent="."]
@@ -442,6 +456,22 @@ shape = SubResource("RectangleShape2D_b1qrp")
 position = Vector2(-315.5, 416)
 shape = SubResource("RectangleShape2D_b1qrp")
 
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Bordures"]
+position = Vector2(2166.25, -197.5)
+shape = SubResource("RectangleShape2D_h8e4i")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Bordures"]
+position = Vector2(2166, 309)
+shape = SubResource("RectangleShape2D_h8e4i")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Bordures"]
+position = Vector2(1831.5, 56.000008)
+shape = SubResource("RectangleShape2D_4lmeg")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Bordures"]
+position = Vector2(2500.5, 56.000008)
+shape = SubResource("RectangleShape2D_4lmeg")
+
 [node name="Renard" parent="." instance=ExtResource("4_1bvp3")]
 z_index = 1
 position = Vector2(176, 281)
@@ -460,8 +490,17 @@ position = Vector2(-332, 157)
 collision_layer = 3
 collision_mask = 3
 
+[node name="Renard4" parent="." instance=ExtResource("4_1bvp3")]
+z_index = 1
+position = Vector2(44, 37)
+collision_layer = 3
+collision_mask = 3
+
 [node name="Loup" parent="." instance=ExtResource("23_d13ii")]
 position = Vector2(166, 586)
+
+[node name="Loup2" parent="." instance=ExtResource("23_d13ii")]
+position = Vector2(-266, 674)
 
 [node name="mapHoney" type="Node2D" parent="."]
 position = Vector2(2094, 0)
@@ -514,6 +553,22 @@ tile_set = SubResource("TileSet_h8e4i")
 
 [node name="AbeilleBoss" parent="map" instance=ExtResource("41_4lmeg")]
 position = Vector2(292, -87)
+[node name="portal" type="Area2D" parent="."]
+position = Vector2(360, 636)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("41_4lmeg")
+
+[node name="Sprite2D" type="Sprite2D" parent="portal"]
+texture_filter = 1
+position = Vector2(10.000004, 1.9999993)
+scale = Vector2(0.24999982, 0.33333382)
+texture = ExtResource("31_4k2k6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="portal"]
+position = Vector2(10, 2)
+shape = SubResource("RectangleShape2D_0cp0l")
 
 [connection signal="body_entered" from="Player/ZoneAttaque" to="Player" method="_on_zone_attaque_body_entered"]
 [connection signal="animation_finished" from="Player/ZoneAttaque/SlashSprite" to="Player" method="_on_slash_sprite_animation_finished"]
+[connection signal="body_entered" from="portal" to="portal" method="_on_body_entered"]
