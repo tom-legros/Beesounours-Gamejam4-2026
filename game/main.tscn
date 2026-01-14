@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=4 uid="uid://cs141t3nfd1h3"]
+[gd_scene load_steps=68 format=4 uid="uid://cs141t3nfd1h3"]
 
 [ext_resource type="Script" uid="uid://d2exudqh0ika2" path="res://player.gd" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://c4t8wew7jch15" path="res://img/Ours_arriere1.png" id="2_kek77"]
@@ -174,6 +174,12 @@ size = Vector2(12.75, 976)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b1qrp"]
 size = Vector2(9, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h8e4i"]
+size = Vector2(657.5, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4lmeg"]
+size = Vector2(13, 496)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0rl1p"]
 texture = ExtResource("31_4k2k6")
@@ -441,6 +447,22 @@ shape = SubResource("RectangleShape2D_b1qrp")
 position = Vector2(-315.5, 416)
 shape = SubResource("RectangleShape2D_b1qrp")
 
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Bordures"]
+position = Vector2(2166.25, -197.5)
+shape = SubResource("RectangleShape2D_h8e4i")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Bordures"]
+position = Vector2(2166, 309)
+shape = SubResource("RectangleShape2D_h8e4i")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Bordures"]
+position = Vector2(1831.5, 56.000008)
+shape = SubResource("RectangleShape2D_4lmeg")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Bordures"]
+position = Vector2(2500.5, 56.000008)
+shape = SubResource("RectangleShape2D_4lmeg")
+
 [node name="Renard" parent="." instance=ExtResource("4_1bvp3")]
 z_index = 1
 position = Vector2(176, 281)
@@ -459,8 +481,17 @@ position = Vector2(-332, 157)
 collision_layer = 3
 collision_mask = 3
 
+[node name="Renard4" parent="." instance=ExtResource("4_1bvp3")]
+z_index = 1
+position = Vector2(44, 37)
+collision_layer = 3
+collision_mask = 3
+
 [node name="Loup" parent="." instance=ExtResource("23_d13ii")]
 position = Vector2(166, 586)
+
+[node name="Loup2" parent="." instance=ExtResource("23_d13ii")]
+position = Vector2(-266, 674)
 
 [node name="mapHoney" type="Node2D" parent="."]
 position = Vector2(2094, 0)
