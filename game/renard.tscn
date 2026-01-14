@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://chchfl8614gnw" path="res://img/renard.png" id="1_kv4hg"]
 [ext_resource type="Script" uid="uid://c3s817cmw628g" path="res://renard.gd" id="1_mede7"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_272bh"]
-size = Vector2(16, 11.612908)
+[sub_resource type="CircleShape2D" id="CircleShape2D_aom7s"]
+radius = 5.613363
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kv4hg"]
 radius = 76.00658
@@ -23,9 +23,9 @@ scale = Vector2(1.25, 1.2916666)
 texture = ExtResource("1_kv4hg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Ennemis"]]
-position = Vector2(1.0000002, 0.5)
+position = Vector2(1, 2)
 scale = Vector2(1.25, 1.2916662)
-shape = SubResource("RectangleShape2D_272bh")
+shape = SubResource("CircleShape2D_aom7s")
 
 [node name="Vision" type="Area2D" parent="." groups=["Ennemis"]]
 
@@ -35,6 +35,7 @@ shape = SubResource("CircleShape2D_kv4hg")
 [node name="ZoneDegats" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZoneDegats"]
+position = Vector2(1, 1)
 shape = SubResource("CircleShape2D_mede7")
 
 [connection signal="body_entered" from="Vision" to="." method="_on_vision_body_entered"]
