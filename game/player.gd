@@ -44,10 +44,26 @@ var peut_sprinter : bool = true
 func _ready():
 	if slash_sprite:
 		slash_sprite.visible = false
+		
+func gagner_vie(montant: int):
+	if pv_actuels >= pv_max:
+		return
+
+	pv_actuels += montant
+
+	if pv_actuels > pv_max:
+		pv_actuels = pv_max
+		
+	if barre_vie:
+		barre_vie.value = pv_actuels
+		
+	var tween = create_tween()
+	tween.tween_property(animated_sprite, "modulate", Color.GREEN, 0.1)
+	tween.tween_property(animated_sprite, "modulate", Color.WHITE, 0.1)
+
 func recevoir_degats(montant: int, source_position: Vector2 = Vector2.ZERO):
 	if est_invulnerable or pv_actuels <= 0:
 		return
-	
 	pv_actuels -= montant
 	
 
@@ -68,8 +84,6 @@ func recevoir_degats(montant: int, source_position: Vector2 = Vector2.ZERO):
 	if barre_vie:
 		barre_vie.value = pv_actuels
 	
-	print("PV restants : ", pv_actuels)
-	
 	var tween = create_tween()
 	tween.tween_property(animated_sprite, "modulate", Color.RED, 0.1)
 	tween.tween_property(animated_sprite, "modulate", Color.WHITE, 0.1)
@@ -82,7 +96,6 @@ func recevoir_degats(montant: int, source_position: Vector2 = Vector2.ZERO):
 		est_invulnerable = false
 
 func mourir():
-	print("L'ours est mort")
 	if animated_sprite.sprite_frames.has_animation("mourrir"):
 		animated_sprite.play("mourrir")
 	else:

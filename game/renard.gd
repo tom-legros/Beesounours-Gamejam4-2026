@@ -49,6 +49,9 @@ func subir_degats():
 		mourir()
 
 func mourir():
+	var joueur = get_tree().current_scene.find_child("Player", true, false)
+	if joueur and joueur.has_method("gagner_vie"):
+		joueur.gagner_vie(1)
 	queue_free()
 
 func choisir_direction_aleatoire():
