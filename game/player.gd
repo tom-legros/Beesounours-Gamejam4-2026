@@ -250,5 +250,5 @@ func apply_shrink_effect(final_scale: Vector2, final_zoom: Vector2):
 		tween.tween_property(camera, "zoom", final_zoom, shrink_duration)
 
 
-func on_portal_entered(body: Node2D) -> void:
+func on_portal_entered(_body: Node2D) -> void:
 	pass # Replace with function body.
