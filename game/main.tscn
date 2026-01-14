@@ -1,5 +1,4 @@
-[gd_scene load_steps=64 format=4 uid="uid://cs141t3nfd1h3"]
-[gd_scene load_steps=63 format=4 uid="uid://cs141t3nfd1h3"]
+[gd_scene load_steps=66 format=4 uid="uid://cs141t3nfd1h3"]
 
 [ext_resource type="Script" uid="uid://d2exudqh0ika2" path="res://player.gd" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://c4t8wew7jch15" path="res://img/Ours_arriere1.png" id="2_kek77"]
