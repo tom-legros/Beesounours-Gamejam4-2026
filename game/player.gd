@@ -9,16 +9,18 @@ const ZOOM_SPEED = 5.0
 const ATTACK_COOLDOWN := 0.6 
 const FORCE_RECUL = 400
 
-
+# --- ÉTATS ---
 var can_attack := true
 var is_attacking: bool = false
 var is_knocked_back : bool = false
 var is_small: bool = false
 
+# --- EXPORTS ---
 @export var normal_scale: Vector2 = Vector2(1.0, 1.0)
 @export var small_scale: Vector2 = Vector2(0.5, 0.5) 
 @export var shrink_duration: float = 0.5
 
+# --- NODES ---
 @onready var zone_attaque_node = $ZoneAttaque 
 @onready var collision_attaque = $ZoneAttaque/CollisionShape2D
 @onready var sprite_ours = $PlayerSprite
@@ -26,33 +28,49 @@ var is_small: bool = false
 @onready var animated_sprite = $PlayerSprite
 @onready var barre_vie = get_tree().current_scene.find_child("BarreVie", true, false)
 @onready var slash_sprite: AnimatedSprite2D = $ZoneAttaque/SlashSprite
+@onready var barre_endurance = get_tree().current_scene.find_child("BarreEndurance", true, false)
 
-
+# --- TEXTURES ---
 var texture_normale = preload("res://img/Ours_Walking1.png")
 var texture_attaque = preload("res://img/Ours_attaque.png")
 var texture_arriere = preload("res://img/Ours_arriere1.png")
 var texture_avant = preload("res://img/Ours_avant.png")
 
+# --- STATS ---
 var pv_max : int = 3
 var pv_actuels : int = pv_max
 var est_invulnerable : bool = false 
 
+# --- ENDURANCE ---
+var endurance : float = 100.0
+var endurance_max: float = 100.0
+var peut_sprinter : bool = true # La variable magique pour la caméra
+
+func _ready():
+	if slash_sprite:
+		slash_sprite.visible = false
+
+# --- FONCTION DE DÉGÂTS (AVEC RECUL) ---
 func recevoir_degats(montant: int, source_position: Vector2 = Vector2.ZERO):
 	if est_invulnerable or pv_actuels <= 0:
 		return
+	
 	pv_actuels -= montant
+	
+	# Gestion du Recul
 	if source_position != Vector2.ZERO:
 		is_knocked_back = true
 		var direction_recul = (global_position - source_position).normalized()
 		velocity = direction_recul * FORCE_RECUL 
 		await get_tree().create_timer(0.2).timeout
-		
 		is_knocked_back = false
 		velocity = Vector2.ZERO
 
-	camera.offset = Vector2(randf_range(-5, 5), randf_range(-5, 5))
-	await get_tree().create_timer(0.1).timeout
-	camera.offset = Vector2.ZERO
+	# Effet Caméra
+	if camera:
+		camera.offset = Vector2(randf_range(-5, 5), randf_range(-5, 5))
+		await get_tree().create_timer(0.1).timeout
+		camera.offset = Vector2.ZERO
 	
 	if barre_vie:
 		barre_vie.value = pv_actuels
@@ -71,7 +89,13 @@ func recevoir_degats(montant: int, source_position: Vector2 = Vector2.ZERO):
 		est_invulnerable = false
 
 func mourir():
-	animated_sprite.play("mourrir")
+	print("L'ours est mort")
+	# Assure-toi d'avoir une animation nommée "mourrir" (ou "mort")
+	if animated_sprite.sprite_frames.has_animation("mourrir"):
+		animated_sprite.play("mourrir")
+	else:
+		animated_sprite.rotation_degrees = 90 # Fallback si pas d'anim
+		
 	set_physics_process(false) 
 	await get_tree().create_timer(1.5).timeout
 	get_tree().reload_current_scene()
@@ -80,21 +104,44 @@ func _physics_process(_delta):
 	if is_knocked_back:
 		move_and_slide()
 		return
+
 	animated_sprite.speed_scale = 1
+	
 	if Input.is_key_pressed(KEY_SPACE) and is_attacking == false:
 		lancer_attaque()
 	if Input.is_key_pressed(KEY_A) and is_small == false:
 		retrecir()
 	if Input.is_key_pressed(KEY_E) and is_small == true:
 		agrandir()
+
 	var current_speed = WALK_SPEED
 	var target_zoom = ZOOM_NORMAL 
-	if Input.is_key_pressed(KEY_SHIFT) and pv_actuels >0:
+
+	# --- GESTION ENDURANCE + CAMÉRA ---
+	# 1. On vérifie si on a assez d'énergie pour commencer à courir
+	if endurance <= 0:
+		peut_sprinter = false
+	elif endurance >= 20: # On attend d'avoir récupéré un peu avant de re-sprinter
+		peut_sprinter = true
+
+	# 2. On applique le sprint seulement si tout est OK
+	if Input.is_key_pressed(KEY_SHIFT) and pv_actuels > 0 and peut_sprinter:
 		current_speed = SPRINT_SPEED
 		target_zoom = ZOOM_RUN
 		animated_sprite.speed_scale = 4
+		endurance -= 40 * _delta
+	else:
+		endurance += 15 * _delta
+	
+	# 3. Mise à jour Barre
+	endurance = clamp(endurance, 0, endurance_max)
+	if barre_endurance:
+		barre_endurance.value = endurance
+	# ----------------------------------
+
 	if camera:
 		camera.zoom = camera.zoom.lerp(target_zoom, ZOOM_SPEED * _delta)
+	
 	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	if direction.x != 0:
 		if not is_attacking:
@@ -115,6 +162,7 @@ func _physics_process(_delta):
 			zone_attaque_node.rotation_degrees = -90 
 	elif not is_attacking:
 		animated_sprite.play("idle")
+		
 	if direction != Vector2.ZERO:
 		velocity = direction * current_speed
 	else:
@@ -128,30 +176,32 @@ func lancer_attaque():
 	can_attack = false
 	is_attacking = true
 	velocity = Vector2.ZERO
+	
 	animated_sprite.play("attaque")
-
 	
 	collision_attaque.disabled = false
-	slash_sprite.visible = true
-	slash_sprite.play("slash")
+	
+	if slash_sprite:
+		slash_sprite.visible = true
+		slash_sprite.play("slash")
 
 	await get_tree().create_timer(0.25).timeout
 	collision_attaque.disabled = true
 	is_attacking = false
+	
 	await get_tree().create_timer(ATTACK_COOLDOWN).timeout
 	can_attack = true
 
-
-
-	
 func _on_zone_attaque_body_entered(body):
 	if body == self:
 		return
+		
 	var ennemi = null
 	if body.is_in_group("Ennemis"):
 		ennemi = body
 	elif body.get_parent().is_in_group("Ennemis"):
 		ennemi = body.get_parent()
+		
 	if ennemi:
 		if ennemi.has_method("subir_degats"):
 			ennemi.subir_degats()
@@ -159,7 +209,8 @@ func _on_zone_attaque_body_entered(body):
 			ennemi.queue_free()
 
 func _on_slash_sprite_animation_finished():
-	slash_sprite.visible = false
+	if slash_sprite:
+		slash_sprite.visible = false
 
 func retrecir():
 	var target_scale

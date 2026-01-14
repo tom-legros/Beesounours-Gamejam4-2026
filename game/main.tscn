@@ -390,6 +390,10 @@ value = 3.0
 texture_under = ExtResource("21_ryguw")
 texture_progress = ExtResource("22_d13ii")
 
+[node name="barre_endurance" type="TextureProgressBar" parent="Player/CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="Bordures" type="StaticBody2D" parent="."]
 
 [node name="bordureBas" type="CollisionShape2D" parent="Bordures"]
