@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=4 uid="uid://cs141t3nfd1h3"]
+[gd_scene load_steps=63 format=4 uid="uid://cs141t3nfd1h3"]
 
 [ext_resource type="Script" uid="uid://d2exudqh0ika2" path="res://player.gd" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://c4t8wew7jch15" path="res://img/Ours_arriere1.png" id="2_kek77"]
@@ -32,6 +32,8 @@
 [ext_resource type="Texture2D" uid="uid://b1nxfq6xpc5cf" path="res://img/Barre full.png" id="22_d13ii"]
 [ext_resource type="Texture2D" uid="uid://c10gaix0jpovx" path="res://img/tree1.png" id="23_1u8w0"]
 [ext_resource type="PackedScene" uid="uid://dg4v2ju86qprl" path="res://Loup.tscn" id="23_d13ii"]
+[ext_resource type="Texture2D" uid="uid://nwy1o0kf5dr1" path="res://img/Barre endurance vide.png" id="29_4lmeg"]
+[ext_resource type="Texture2D" uid="uid://deoa556ro73fn" path="res://img/Barre endurance full.png" id="30_0cp0l"]
 [ext_resource type="Texture2D" uid="uid://ceyj6uy0615mu" path="res://img/honey_bottom_tile.png" id="31_4k2k6"]
 [ext_resource type="Texture2D" uid="uid://nddkfoss7n08" path="res://img/grass_thingy.png" id="31_jq2sk"]
 [ext_resource type="Texture2D" uid="uid://b4w8hu6icva66" path="res://img/watah.png" id="33_0rl1p"]
@@ -390,9 +392,12 @@ value = 3.0
 texture_under = ExtResource("21_ryguw")
 texture_progress = ExtResource("22_d13ii")
 
-[node name="barre_endurance" type="TextureProgressBar" parent="Player/CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="BarreEndurance" type="TextureProgressBar" parent="Player/CanvasLayer"]
+texture_filter = 1
+offset_right = 64.0
+offset_bottom = 64.0
+texture_under = ExtResource("29_4lmeg")
+texture_progress = ExtResource("30_0cp0l")
 
 [node name="Bordures" type="StaticBody2D" parent="."]
 
