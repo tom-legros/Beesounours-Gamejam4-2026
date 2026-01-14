@@ -1,6 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhfr8xl27efy6"]
+[gd_scene load_steps=9 format=3 uid="uid://dhfr8xl27efy6"]
 
 [ext_resource type="FontFile" uid="uid://bkla60fjg850c" path="res://blue_winter/Blue Winter.otf" id="1_06t4h"]
+[ext_resource type="Script" uid="uid://1gq2lumde1ic" path="res://main_menu.gd" id="1_fu7sn"]
+[ext_resource type="Texture2D" uid="uid://g5br6rdtfgj4" path="res://img/backgroundMenu.png" id="2_7vrkn"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7vrkn"]
+texture = ExtResource("2_7vrkn")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vrkn"]
 bg_color = Color(1.2995303e-06, 0.6333134, 0.3385299, 1)
@@ -25,13 +30,25 @@ corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 shadow_size = 3
 
-[node name="Control" type="Control"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_06t4h"]
+
+[node name="main_menu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_fu7sn")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_7vrkn")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -69,3 +86,25 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_7vrkn")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_fu7sn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_06t4h")
 text = "EXIT"
+
+[node name="TextEdit" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -405.875
+offset_top = -219.8125
+offset_right = 405.875
+offset_bottom = 219.8125
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.9279577, 0.7833505, 0.31207773, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_06t4h")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxEmpty_06t4h")
+text = "BEESOUNOURS
+"
