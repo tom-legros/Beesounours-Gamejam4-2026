@@ -1,6 +1,4 @@
-
-[gd_scene load_steps=70 format=4 uid="uid://cs141t3nfd1h3"]
-
+[gd_scene load_steps=71 format=4 uid="uid://cs141t3nfd1h3"]
 
 [ext_resource type="Script" uid="uid://d2exudqh0ika2" path="res://player.gd" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://c4t8wew7jch15" path="res://img/Ours_arriere1.png" id="2_kek77"]
@@ -42,10 +40,8 @@
 [ext_resource type="Texture2D" uid="uid://cnduaxuhy2aqj" path="res://img/side_trees.png" id="36_ok6jj"]
 [ext_resource type="Texture2D" uid="uid://dxqcwri6w65m0" path="res://img/buche pont fin.png" id="37_b1qrp"]
 [ext_resource type="Texture2D" uid="uid://b8ddqioe4sehh" path="res://img/buche pont.png" id="38_come4"]
-
-[ext_resource type="PackedScene" uid="uid://bm1jh4pfwh24l" path="res://abeille_boss.tscn" id="41_4lmeg"]
 [ext_resource type="Script" uid="uid://c4ifj0k7q27ph" path="res://area_2d.gd" id="41_4lmeg"]
-
+[ext_resource type="PackedScene" uid="uid://bm1jh4pfwh24l" path="res://abeille_boss.tscn" id="42_0cp0l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
 size = Vector2(10, 14)
@@ -551,8 +547,19 @@ texture_filter = 1
 tile_map_data = PackedByteArray("AADs/xYAAQAAAAAAAADs/xcAAQAAAAAAAADs/xgAAQAAAAAAAADs/x0AAQAAAAAAAADs/xwAAQAAAAAAAADs/xsAAQAAAAAAAADs/xoAAQAAAAAAAADs/xkAAQAAAAAAAADt/xkAAQAAAAAAAADt/xgAAQAAAAAAAADt/xcAAQAAAAAAAADt/xYAAQAAAAAAAADt/xoAAQAAAAAAAADt/xsAAQAAAAAAAADt/xwAAQAAAAAAAADt/x0AAQAAAAAAAAA=")
 tile_set = SubResource("TileSet_h8e4i")
 
-[node name="AbeilleBoss" parent="map" instance=ExtResource("41_4lmeg")]
+[node name="AbeilleBoss" parent="map"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 position = Vector2(292, -87)
+script = null
+
 [node name="portal" type="Area2D" parent="."]
 position = Vector2(360, 636)
 collision_layer = 3
@@ -568,6 +575,9 @@ texture = ExtResource("31_4k2k6")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="portal"]
 position = Vector2(10, 2)
 shape = SubResource("RectangleShape2D_0cp0l")
+
+[node name="AbeilleBoss" parent="." instance=ExtResource("42_0cp0l")]
+position = Vector2(2168, 5)
 
 [connection signal="body_entered" from="Player/ZoneAttaque" to="Player" method="_on_zone_attaque_body_entered"]
 [connection signal="animation_finished" from="Player/ZoneAttaque/SlashSprite" to="Player" method="_on_slash_sprite_animation_finished"]

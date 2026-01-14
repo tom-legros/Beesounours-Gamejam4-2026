@@ -5,6 +5,6 @@ extends Area2D
 func _ready() -> void:
 	pass # Replace with function body.
 
-func _on_body_entered(body:Node2D)->void:
-	if body == Player:
-		body.global_position=Vector2(2130,55)
+func _on_body_entered(_body:Node2D)->void:
+	if _body == Player:
+		_body.global_position=Vector2(2130,55)
