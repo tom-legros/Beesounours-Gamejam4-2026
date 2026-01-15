@@ -4,41 +4,41 @@
 # - LES CHAMPS OBLIGATOIRES SONT INDIQUÉS PAR [!]
 # - NE SUPPRIMEZ PAS LES CHAMPS VIDES laissez par exemple,    abstract: "" 
 # ----------------------------------
-title: "[!] Title of your game"  # Le titre tel qu'il apparaîtra lors de la présentation
-abstract: "" # Résumé de votre jeu
-team:  "[!] ekip L like Legends"  # Le nom de votre équipe tel qu'il apparaîtra à la présentation
-motto: "Me + you and you and we're good for life adventures" # Le slogan de votre équipe
+title: "Beesounours"  # Le titre tel qu'il apparaîtra lors de la présentation
+abstract: "Vous jouez un ours qui matraite des animaux pour récupérer du miel" # Résumé de votre jeu
+team:  "La Bulle 2"  # Le nom de votre équipe tel qu'il apparaîtra à la présentation
+motto: "Il n'y a jamais de bulle sans savon, attention blanchard/" # Le slogan de votre équipe
 members:  # Liste des membres de l'équipe (ajoutez un bloc par membre)
   # --- Premier membre ---
-  - firstname: "[!] Benjamin"   # Prénom
-    lastname: "[!] Pierret"     # Nom
+  - firstname: "Benjamin"   # Prénom
+    lastname: "Pierret"     # Nom
     nickname: "Reshomy"          # Pseudo
-    group: "[!] tp_1_B"        # Groupe de TP (Ex : INF_S2_3A)
+    group: "INF_S1_1B"        # Groupe de TP (Ex : INF_S2_3A)
     bestgame: "Minecraft"   # Jeu préféré de tous les temps
     momentgame: "Hollow Knight Silksong"         # Jeu préféré du moment
     ostgame: "Aria Math by C418" # Bande son / musique de jeu vidéo préférée
     character: "DOOM Slayer"    # Personnage de jeu vidéo préféré
   # --- Deuxième membre ---
-  - firstname: "[!]Tom"             # Prénom
-    lastname: "[!]Legros"               # Nom
+  - firstname: "Tom"             # Prénom
+    lastname: "Legros"               # Nom
     nickname: "Cryoro"                   # Pseudo
-    group: "[!]INF_S1_1A"                  # Groupe de TP (Ex : INF_S4_2B)
+    group: "INF_S1_1A"                  # Groupe de TP (Ex : INF_S4_2B)
     bestgame: "Hollow Knight"                    # Jeu préféré de tous les temps
     momentgame: "Hollow Knigh Silksong" # Jeu préféré du moment
     ostgame: "Octopath Traveler 2 - Critical Clash I"       # Bande son / musique de jeu vidéo préférée
     character: "Hikari(Octopath Traveler 2)"                # Personnage préféré
     # --- Troisième membre ---
-  - firstname: "[!]Arthur"             # Prénom
-    lastname: "[!]Sauvaget"               # Nom
+  - firstname: "Arthur"             # Prénom
+    lastname: "Sauvaget"               # Nom
     nickname: "Boubou"                   # Pseudo
-    group: "[!]INF_S1_1B"                  # Groupe de TP (Ex : INF_S4_2B)
+    group: "INF_S1_1B"                  # Groupe de TP (Ex : INF_S4_2B)
     bestgame: "Fallout 3"                    # Jeu préféré de tous les temps
     momentgame: "Outer Worlds 2" # Jeu préféré du moment
     ostgame: "BIG SHOT - Toby Fox"       # Bande son / musique de jeu vidéo préférée
     character: "Ichiban Kasuga"                # Personnage préféré
-engine: "Unity" # Moteur de jeu utilisé (exemples : "Pygame" "Phaser" "Godot" "Unity" "Unreal" "Custom/Python" "Custom/Javascript")
+engine: "Godot" # Moteur de jeu utilisé (exemples : "Pygame" "Phaser" "Godot" "Unity" "Unreal" "Custom/Python" "Custom/Javascript")
 credits:
   - audio: "self production"                          # Audio
   - graphics: "self production"                       # Graphismes
-  - thanks: "My friends, my family, and Eric Cantona" # Remerciements
-message: "?" # Information ou message à ajouter, et qui ne correspondait à aucun item de ce template
+  - thanks: "Mathys the goat" # Remerciements
+message: "" # Information ou message à ajouter, et qui ne correspondait à aucun item de ce template
