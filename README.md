@@ -1,4 +1,17 @@
 # gj4
+Pour jouer : utiliser les flêches pour se déplacer, la touche espace pour frapper et maintenir la touche shift pour courrir. La touche A sert à rétrecir et E à s'aggrandir. Il y a une barre d'endurance remontant avec le temps et une barre de vie se remplissant quand on tue des ennemis.
+
+
+
+
+
+
+
+
+
+
+
+
 
 Ceci est un squelette de dépôt pour votre jeu.
 
