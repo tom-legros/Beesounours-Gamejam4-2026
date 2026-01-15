@@ -26,7 +26,7 @@ var portal_entered: bool = false
 @onready var barre_endurance = get_tree().current_scene.find_child("BarreEndurance", true, false)
 @onready var attaque = $attaque
 @onready var mort = $mort
-@onready var timer = $timer
+@onready var Portal =get_node("../portal")
 
 
 var texture_normale = preload("res://img/Ours_Walking1.png")
@@ -264,9 +264,9 @@ func on_portal_entered(_body: Node2D) -> void:
 
 func random_size():
 	if portal_entered:
-		if is_small:
-			timer.start(randi_range(10,20))
+		if not is_small:
+			await get_tree().create_timer(1.0).timeout
 			retrecir()
 		else:
-			timer.start(randi_range(5,15))
+			await get_tree().create_timer(1.0).timeout
 			agrandir()

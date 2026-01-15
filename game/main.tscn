@@ -374,7 +374,7 @@ script = ExtResource("1_gngh3")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 z_index = 1
-position = Vector2(319, -106)
+position = Vector2(319, 612)
 script = ExtResource("1_0xm2m")
 
 [node name="CollisionCorps" type="CollisionShape2D" parent="Player"]
