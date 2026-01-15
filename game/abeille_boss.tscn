@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bm1jh4pfwh24l"]
+[gd_scene load_steps=6 format=3 uid="uid://bm1jh4pfwh24l"]
 
 [ext_resource type="Script" uid="uid://bq2e46pt5ox24" path="res://abeille_boss.gd" id="1_sttjn"]
 [ext_resource type="Texture2D" uid="uid://but2q0a2kjfvr" path="res://img/Abeille.png" id="1_yyfx8"]
@@ -8,6 +8,9 @@ radius = 26.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sttjn"]
 radius = 27.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sttjn"]
+size = Vector2(168.75, 133.5)
 
 [node name="AbeilleBoss" type="CharacterBody2D" groups=["Ennemis"]]
 script = ExtResource("1_sttjn")
@@ -28,4 +31,11 @@ position = Vector2(1, 1)
 position = Vector2(3, -4)
 shape = SubResource("CircleShape2D_sttjn")
 
+[node name="ZoneDetection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZoneDetection"]
+position = Vector2(6.625, 7.25)
+shape = SubResource("RectangleShape2D_sttjn")
+
 [connection signal="body_entered" from="ZoneDegats" to="." method="_on_zone_degats_body_entered"]
+[connection signal="body_entered" from="ZoneDetection" to="." method="_on_zone_detection_body_entered"]
