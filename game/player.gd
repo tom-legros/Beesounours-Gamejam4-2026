@@ -4,7 +4,7 @@ const ZOOM_NORMAL = Vector2(5.0, 5.0)
 const ZOOM_RUN = Vector2(3.5, 3.5) 
 const ZOOM_SPEED = 5.0
 const ATTACK_COOLDOWN := 0.6 
-const FORCE_RECUL = 800
+const FORCE_RECUL = 400
 
 var can_attack := true
 var is_attacking: bool = false
