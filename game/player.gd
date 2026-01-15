@@ -1,8 +1,5 @@
 extends CharacterBody2D
 
-const WALK_SPEED = 70
-const SPRINT_SPEED = 150
-
 const ZOOM_NORMAL = Vector2(5.0, 5.0) 
 const ZOOM_RUN = Vector2(3.5, 3.5) 
 const ZOOM_SPEED = 5.0
@@ -109,7 +106,6 @@ func _physics_process(_delta):
 	if is_knocked_back:
 		move_and_slide()
 		return
-
 	animated_sprite.speed_scale = 1
 	
 	if Input.is_key_pressed(KEY_SPACE) and is_attacking == false:
@@ -119,9 +115,10 @@ func _physics_process(_delta):
 	if Input.is_key_pressed(KEY_E) and is_small == true:
 		agrandir()
 
-	var current_speed = WALK_SPEED
+	var current_speed = 70
 	var target_zoom = ZOOM_NORMAL 
-
+	if is_small:
+		current_speed=40
 	if endurance <= 0:
 		peut_sprinter = false
 	elif endurance >= 20:
@@ -129,10 +126,16 @@ func _physics_process(_delta):
 
 
 	if Input.is_key_pressed(KEY_SHIFT) and pv_actuels > 0 and peut_sprinter:
-		current_speed = SPRINT_SPEED
-		target_zoom = ZOOM_RUN
-		animated_sprite.speed_scale = 4
-		endurance -= 40 * _delta
+		if is_small:
+			current_speed = 60
+			target_zoom = ZOOM_RUN
+			animated_sprite.speed_scale = 4
+			endurance -= 40 * _delta
+		else:
+			current_speed = 150
+			target_zoom = ZOOM_RUN
+			animated_sprite.speed_scale = 4
+			endurance -= 40 * _delta
 	else:
 		endurance += 15 * _delta
 	
