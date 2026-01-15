@@ -15,6 +15,10 @@ run/main_scene="uid://dhfr8xl27efy6"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://img/icon.svg"
 
+[autoload]
+
+Music="*res://music.tscn"
+
 [input]
 
 dash={

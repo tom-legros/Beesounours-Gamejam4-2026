@@ -23,6 +23,9 @@ var is_small: bool = false
 @onready var barre_vie = get_tree().current_scene.find_child("BarreVie", true, false)
 @onready var slash_sprite: AnimatedSprite2D = $ZoneAttaque/SlashSprite
 @onready var barre_endurance = get_tree().current_scene.find_child("BarreEndurance", true, false)
+@onready var attaque = $attaque
+@onready var mort = $mort
+
 
 var texture_normale = preload("res://img/Ours_Walking1.png")
 var texture_attaque = preload("res://img/Ours_attaque.png")
@@ -97,7 +100,7 @@ func mourir():
 		animated_sprite.play("mourrir")
 	else:
 		animated_sprite.rotation_degrees = 90
-		
+	mort.play()	
 	set_physics_process(false) 
 	await get_tree().create_timer(1.5).timeout
 	get_tree().reload_current_scene()
@@ -189,6 +192,7 @@ func lancer_attaque():
 	
 	if slash_sprite:
 		slash_sprite.visible = true
+		attaque.play()
 		slash_sprite.play("slash")
 
 	await get_tree().create_timer(0.25).timeout

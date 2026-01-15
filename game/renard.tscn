@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://sk2vuxovb2x5"]
+[gd_scene load_steps=7 format=3 uid="uid://sk2vuxovb2x5"]
 
 [ext_resource type="Texture2D" uid="uid://chchfl8614gnw" path="res://img/renard.png" id="1_kv4hg"]
 [ext_resource type="Script" uid="uid://c3s817cmw628g" path="res://renard.gd" id="1_mede7"]
+[ext_resource type="AudioStream" uid="uid://0c5l1v3s3u02" path="res://audio/animal.MP3" id="3_aom7s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aom7s"]
 radius = 5.613363
@@ -37,6 +38,9 @@ shape = SubResource("CircleShape2D_kv4hg")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZoneDegats"]
 position = Vector2(1, 1)
 shape = SubResource("CircleShape2D_mede7")
+
+[node name="animal" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_aom7s")
 
 [connection signal="body_entered" from="Vision" to="." method="_on_vision_body_entered"]
 [connection signal="body_exited" from="Vision" to="." method="_on_vision_body_exited"]

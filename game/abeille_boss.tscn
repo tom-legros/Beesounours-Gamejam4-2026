@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bm1jh4pfwh24l"]
+[gd_scene load_steps=7 format=3 uid="uid://bm1jh4pfwh24l"]
 
 [ext_resource type="Script" uid="uid://bq2e46pt5ox24" path="res://abeille_boss.gd" id="1_sttjn"]
 [ext_resource type="Texture2D" uid="uid://but2q0a2kjfvr" path="res://img/Abeille.png" id="1_yyfx8"]
+[ext_resource type="AudioStream" uid="uid://cubkh8a6ia1ih" path="res://audio/reineAbeille.MP3" id="3_s7qbx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yyfx8"]
 radius = 26.0
@@ -36,6 +37,9 @@ shape = SubResource("CircleShape2D_sttjn")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZoneDetection"]
 position = Vector2(6.625, 7.25)
 shape = SubResource("RectangleShape2D_sttjn")
+
+[node name="ReineAbeille" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_s7qbx")
 
 [connection signal="body_entered" from="ZoneDegats" to="." method="_on_zone_degats_body_entered"]
 [connection signal="body_entered" from="ZoneDetection" to="." method="_on_zone_detection_body_entered"]

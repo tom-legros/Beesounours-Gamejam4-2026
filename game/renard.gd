@@ -12,6 +12,7 @@ var direction_errance = Vector2.ZERO
 var temps_errance = 0.0
 
 @onready var sprite = $Sprite2D
+@onready var bruit = $animal
 
 func _ready():
 	choisir_direction_aleatoire()
@@ -51,17 +52,15 @@ func _physics_process(delta):
 func subir_degats():
 	if est_invulnerable:
 		return
-		
+	bruit.play()
 	pv -= 1
 	est_invulnerable = true
-	
 	var tween = create_tween().set_parallel(true)
 	tween.tween_property(sprite, "modulate", Color.RED, 0.1)
 	tween.tween_property(sprite, "scale", Vector2(1.4, 0.6), 0.1).set_trans(Tween.TRANS_BOUNCE)
 	
 	tween.chain().tween_property(sprite, "scale", Vector2(1, 1), 0.2).set_trans(Tween.TRANS_ELASTIC)
 	tween.tween_property(sprite, "modulate", Color.WHITE, 0.2)
-	
 	velocity = -velocity.normalized() * 150
 	move_and_slide()
 	
@@ -76,7 +75,6 @@ func mourir():
 	$CollisionShape2D.set_deferred("disabled", true)
 	if has_node("ZoneDegats/CollisionShape2D"):
 		$ZoneDegats/CollisionShape2D.set_deferred("disabled", true)
-	
 	sprite.position.y = 0 
 	
 	var joueur = get_tree().current_scene.find_child("Player", true, false)

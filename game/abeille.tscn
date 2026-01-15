@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://4x41trg1imct"]
+[gd_scene load_steps=7 format=3 uid="uid://4x41trg1imct"]
 
 [ext_resource type="Script" uid="uid://lmdyx3j2win6" path="res://abeille.gd" id="1_viwrv"]
 [ext_resource type="Texture2D" uid="uid://but2q0a2kjfvr" path="res://img/Abeille.png" id="2_viwrv"]
+[ext_resource type="AudioStream" uid="uid://b1jt1kxnbg1wk" path="res://audio/abeille.MP3" id="3_r34bc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0jcpr"]
 radius = 8.8
@@ -37,6 +38,9 @@ shape = SubResource("CircleShape2D_kv4hg")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZoneDegats"]
 position = Vector2(1, 2)
 shape = SubResource("CircleShape2D_mede7")
+
+[node name="degat" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_r34bc")
 
 [connection signal="body_entered" from="Vision" to="." method="_on_vision_body_entered"]
 [connection signal="body_exited" from="Vision" to="." method="_on_vision_body_exited"]

@@ -15,7 +15,7 @@ var en_train_de_charger : bool = false
 var joueur_cible = null
 
 @onready var sprite = $Sprite2D
-
+@onready var degat = $ReineAbeille
 func _ready():
 	sprite.modulate = Color(0.6, 0.6, 0.6) 
 
@@ -116,6 +116,7 @@ func subir_degats():
 	if est_invulnerable: return
 		
 	pv -= 1
+	degat.play()
 	est_invulnerable = true
 	var tween = create_tween()
 	tween.tween_property(sprite, "modulate", Color.RED, 0.1)
@@ -145,6 +146,7 @@ func mourir():
 		joueur_cible.gagner_vie(3)
 	
 	await tween.finished
+	
 	queue_free()
 
 func _on_zone_degats_body_entered(body):

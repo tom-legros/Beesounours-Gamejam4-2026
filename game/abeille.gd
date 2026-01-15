@@ -14,7 +14,7 @@ var temps_errance = 0.0
 var random_offset : float = 0.0 
 
 @onready var sprite = $Sprite2D
-
+@onready var degat =$degat
 func _ready():
 	choisir_direction_aleatoire()
 	random_offset = randf_range(0, 100.0)
@@ -72,7 +72,7 @@ func subir_degats():
 	if est_invulnerable: return
 	pv -= 1
 	est_invulnerable = true
-	
+	degat.play()
 	var tween = create_tween()
 	tween.tween_property(sprite, "modulate", Color.RED, 0.1)
 	tween.tween_property(sprite, "modulate", Color.WHITE, 0.1)

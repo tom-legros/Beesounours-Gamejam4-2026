@@ -1,6 +1,7 @@
-[gd_scene load_steps=72 format=4 uid="uid://cs141t3nfd1h3"]
+[gd_scene load_steps=75 format=4 uid="uid://cs141t3nfd1h3"]
 
 [ext_resource type="Script" uid="uid://d2exudqh0ika2" path="res://player.gd" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://dpft1dpffi2in" path="res://main.gd" id="1_gngh3"]
 [ext_resource type="Texture2D" uid="uid://c4t8wew7jch15" path="res://img/Ours_arriere1.png" id="2_kek77"]
 [ext_resource type="Texture2D" uid="uid://drtvyyl4a6l3k" path="res://img/Ours_Walking1.png" id="2_lquwl"]
 [ext_resource type="Texture2D" uid="uid://c5pvlegf6o6w4" path="res://img/Ours_arriere2.png" id="3_4c57u"]
@@ -36,7 +37,9 @@
 [ext_resource type="Texture2D" uid="uid://deoa556ro73fn" path="res://img/Barre endurance full.png" id="30_0cp0l"]
 [ext_resource type="Texture2D" uid="uid://ceyj6uy0615mu" path="res://img/honey_bottom_tile.png" id="31_4k2k6"]
 [ext_resource type="Texture2D" uid="uid://nddkfoss7n08" path="res://img/grass_thingy.png" id="31_jq2sk"]
+[ext_resource type="AudioStream" uid="uid://bks8vstfy46t2" path="res://audio/frappe.MP3" id="32_0n3wm"]
 [ext_resource type="Texture2D" uid="uid://b4w8hu6icva66" path="res://img/watah.png" id="33_0rl1p"]
+[ext_resource type="AudioStream" uid="uid://cvdba7b6o0j3d" path="res://audio/mortttt.MP3" id="33_qnost"]
 [ext_resource type="Texture2D" uid="uid://cnduaxuhy2aqj" path="res://img/side_trees.png" id="36_ok6jj"]
 [ext_resource type="Texture2D" uid="uid://dxqcwri6w65m0" path="res://img/buche pont fin.png" id="37_b1qrp"]
 [ext_resource type="Texture2D" uid="uid://b8ddqioe4sehh" path="res://img/buche pont.png" id="38_come4"]
@@ -359,6 +362,7 @@ sources/1 = SubResource("TileSetAtlasSource_come4")
 size = Vector2(5, 4)
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_gngh3")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 z_index = 1
@@ -426,6 +430,12 @@ offset_right = 69.69848
 offset_bottom = 77.01518
 texture_under = ExtResource("29_4lmeg")
 texture_progress = ExtResource("30_0cp0l")
+
+[node name="attaque" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("32_0n3wm")
+
+[node name="mort" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("33_qnost")
 
 [node name="Bordures" type="StaticBody2D" parent="."]
 
