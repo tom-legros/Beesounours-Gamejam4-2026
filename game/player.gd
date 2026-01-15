@@ -26,6 +26,8 @@ var portal_entered: bool = false
 @onready var barre_endurance = get_tree().current_scene.find_child("BarreEndurance", true, false)
 @onready var attaque = $attaque
 @onready var mort = $mort
+@onready var BruitRetrecir = $bruitretrecir
+@onready var BruitAgrandir = $bruitagrandir
 @onready var Portal =get_node("../portal")
 
 
@@ -115,9 +117,9 @@ func _physics_process(_delta):
 	
 	if Input.is_key_pressed(KEY_SPACE) and is_attacking == false:
 		lancer_attaque()
-	if Input.is_key_pressed(KEY_A) and is_small == false:
+	if Input.is_key_pressed(KEY_A) and is_small == false and not portal_entered:
 		retrecir()
-	if Input.is_key_pressed(KEY_E) and is_small == true:
+	if Input.is_key_pressed(KEY_E) and is_small == true and not portal_entered:
 		agrandir()
 	var current_speed = 70
 	var target_zoom = ZOOM_NORMAL 
@@ -226,11 +228,11 @@ func _on_slash_sprite_animation_finished():
 func retrecir():
 	var target_scale
 	var target_zoom
-	
 	if is_small:
 		target_scale = normal_scale
 		target_zoom = Vector2(1.0, 1.0) 
 	else:
+		BruitRetrecir.play()
 		target_scale = small_scale
 		target_zoom = Vector2(4.0, 4.0) 
 
@@ -245,6 +247,7 @@ func agrandir():
 		target_scale = small_scale
 		target_zoom = Vector2(4.0, 4.0) 
 	else:
+		BruitAgrandir.play()
 		target_scale = normal_scale
 		target_zoom = Vector2(4.0, 4.0) 
 
@@ -258,15 +261,17 @@ func apply_shrink_effect(final_scale: Vector2, final_zoom: Vector2):
 		tween.tween_property(camera, "zoom", final_zoom, shrink_duration)
 
 
-func on_portal_entered(_body: Node2D) -> void:
-	portal_entered = true
-	pass # Replace with function body.
-
 func random_size():
 	if portal_entered:
 		if not is_small:
-			await get_tree().create_timer(1.0).timeout
+			await get_tree().create_timer(randi_range(10,15)).timeout
 			retrecir()
 		else:
-			await get_tree().create_timer(1.0).timeout
+			await get_tree().create_timer(randi_range(5,10)).timeout
 			agrandir()
+		random_size()
+
+
+func _on_portal_body_exited(_body: Node2D) -> void:
+	portal_entered = true
+	random_size()

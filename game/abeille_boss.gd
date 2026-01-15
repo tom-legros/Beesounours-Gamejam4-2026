@@ -146,7 +146,7 @@ func mourir():
 		joueur_cible.gagner_vie(3)
 	
 	await tween.finished
-	await get_tree().create_timer(1.5).timeout
+	await get_tree().create_timer(0.5).timeout
 	get_tree().change_scene_to_file("res://fin.tscn")
 	queue_free()
 

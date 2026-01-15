@@ -34,7 +34,7 @@ members:  # Liste des membres de l'équipe (ajoutez un bloc par membre)
     group: "INF_S1_1B"                  # Groupe de TP (Ex : INF_S4_2B)
     bestgame: "Fallout 3"                    # Jeu préféré de tous les temps
     momentgame: "Outer Worlds 2" # Jeu préféré du moment
-    ostgame: "BIG SHOT - Toby Fox"       # Bande son / musique de jeu vidéo préférée
+    ostgame: "My Time - Bo En"       # Bande son / musique de jeu vidéo préférée
     character: "Ichiban Kasuga"                # Personnage préféré
 engine: "Godot" # Moteur de jeu utilisé (exemples : "Pygame" "Phaser" "Godot" "Unity" "Unreal" "Custom/Python" "Custom/Javascript")
 credits:

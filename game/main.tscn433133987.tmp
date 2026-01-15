@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=4 uid="uid://cs141t3nfd1h3"]
+[gd_scene load_steps=78 format=4 uid="uid://cs141t3nfd1h3"]
 
 [ext_resource type="Script" uid="uid://d2exudqh0ika2" path="res://player.gd" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://dpft1dpffi2in" path="res://main.gd" id="1_gngh3"]
@@ -40,8 +40,6 @@
 [ext_resource type="AudioStream" uid="uid://bks8vstfy46t2" path="res://audio/frappe.MP3" id="32_0n3wm"]
 [ext_resource type="Texture2D" uid="uid://b4w8hu6icva66" path="res://img/watah.png" id="33_0rl1p"]
 [ext_resource type="AudioStream" uid="uid://cvdba7b6o0j3d" path="res://audio/mortttt.MP3" id="33_qnost"]
-[ext_resource type="AudioStream" uid="uid://bpxfuumvy3rm7" path="res://audio/agrandir.mp3" id="34_0cbny"]
-[ext_resource type="AudioStream" uid="uid://cym8bk550qmf2" path="res://audio/retrecir.mp3" id="34_f6a44"]
 [ext_resource type="Texture2D" uid="uid://cnduaxuhy2aqj" path="res://img/side_trees.png" id="36_ok6jj"]
 [ext_resource type="Texture2D" uid="uid://dxqcwri6w65m0" path="res://img/buche pont fin.png" id="37_b1qrp"]
 [ext_resource type="Texture2D" uid="uid://csmf7ksnp4v1g" path="res://img/honeyWalls.png" id="37_wnkbs"]
@@ -376,7 +374,7 @@ script = ExtResource("1_gngh3")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 z_index = 1
-position = Vector2(319, -140)
+position = Vector2(319, 612)
 script = ExtResource("1_0xm2m")
 
 [node name="CollisionCorps" type="CollisionShape2D" parent="Player"]
@@ -386,7 +384,7 @@ shape = SubResource("RectangleShape2D_1bvp3")
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="Player"]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_272bh")
-animation = &"attaque"
+animation = &"mourrir"
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(14, 8)
@@ -446,14 +444,6 @@ stream = ExtResource("32_0n3wm")
 
 [node name="mort" type="AudioStreamPlayer" parent="Player"]
 stream = ExtResource("33_qnost")
-
-[node name="bruitagrandir" type="AudioStreamPlayer" parent="Player"]
-stream = ExtResource("34_0cbny")
-pitch_scale = 2.46
-
-[node name="bruitretrecir" type="AudioStreamPlayer" parent="Player"]
-stream = ExtResource("34_f6a44")
-pitch_scale = 2.46
 
 [node name="Bordures" type="StaticBody2D" parent="."]
 
