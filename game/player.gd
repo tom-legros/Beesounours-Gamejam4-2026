@@ -33,7 +33,7 @@ var texture_arriere = preload("res://img/Ours_arriere1.png")
 var texture_avant = preload("res://img/Ours_avant.png")
 
 
-var pv_max : int = 3
+var pv_max : int = 5
 var pv_actuels : int = pv_max
 var est_invulnerable : bool = false 
 
