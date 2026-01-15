@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var VITESSE_MAX = 100
+@export var VITESSE_MAX = 60
 @export var ACCELERATION = 300
 @export var VITESSE_ERRANCE = 50
 
@@ -107,13 +107,13 @@ func _on_vision_body_exited(body):
 	if body == cible:
 		cible = null
 
+
+
 func _on_zone_degats_body_entered(body):
 	if body.name == "Player":
-		var direction_attaque = 1 if not sprite.flip_h else -1
-		var tween = create_tween()
-		
-		tween.tween_property(sprite, "position:x", 5 * direction_attaque, 0.1).set_trans(Tween.TRANS_QUART)
-		tween.tween_property(sprite, "position:x", 0, 0.2).set_trans(Tween.TRANS_ELASTIC)
-		
 		if body.has_method("recevoir_degats"):
 			body.recevoir_degats(1, global_position)
+			var direction_recul = global_position.direction_to(body.global_position) * -1
+
+			velocity = direction_recul * 600
+			move_and_slide()

@@ -1,7 +1,6 @@
 extends CharacterBody2D
 
-
-var pv_max : int = 15
+var pv_max : int = 10
 var pv : int = pv_max
 var vitesse_normale = 35
 var vitesse_charge = 350
@@ -10,18 +9,20 @@ var acc_charge = 800
 
 var scene_petite_abeille = preload("res://abeille.tscn")
 
-
+var est_actif : bool = false
 var est_invulnerable : bool = false
 var en_train_de_charger : bool = false
 var joueur_cible = null
 
-
 @onready var sprite = $Sprite2D
 
 func _ready():
-	boucle_attaque()
+	sprite.modulate = Color(0.6, 0.6, 0.6) 
 
 func _physics_process(delta):
+	if not est_actif:
+		return
+
 	if joueur_cible == null:
 		joueur_cible = get_tree().current_scene.find_child("Player", true, false)
 	
@@ -34,15 +35,28 @@ func _physics_process(delta):
 
 			if direction.x > 0: sprite.flip_h = false
 			else: sprite.flip_h = true
-			
 			sprite.position.y = sin(Time.get_ticks_msec() * 0.005) * 5.0
 	
 	move_and_slide()
 
+func reveiller_boss():
+	if est_actif: return 
+	est_actif = true
+	
+	var tween = create_tween()
+	tween.tween_property(sprite, "modulate", Color.WHITE, 0.5)
+	tween.tween_property(sprite, "scale", Vector2(2.5, 2.5), 0.2)
+	tween.tween_property(sprite, "scale", Vector2(2.2, 2.2), 0.2)
+	
+	
+	boucle_attaque()
+
+
 func boucle_attaque():
 	await get_tree().create_timer(1.0).timeout
 	
-	while pv > 0:
+
+	while pv > 0 and est_actif:
 		var est_enerve = (pv <= 4)
 		
 		var temps_attente = 4.0
@@ -55,6 +69,7 @@ func boucle_attaque():
 		await get_tree().create_timer(0.8).timeout
 		if pv <= 0: break
 
+
 		var tween = create_tween()
 		tween.tween_property(sprite, "scale", Vector2(2.5, 2.5), 0.2)
 		tween.tween_property(sprite, "modulate", Color.ORANGE, 0.2)
@@ -62,6 +77,7 @@ func boucle_attaque():
 		tween.tween_property(sprite, "modulate", Color.WHITE, 0.2)
 		await tween.finished
 		
+
 		en_train_de_charger = true
 		sprite.position.y = 0 
 		
@@ -71,6 +87,7 @@ func boucle_attaque():
 		
 		await get_tree().create_timer(0.6).timeout
 		
+
 		velocity = Vector2.ZERO
 		en_train_de_charger = false
 
@@ -90,8 +107,14 @@ func faire_apparaitre_minions(est_enerve: bool):
 		minion.global_position = global_position + decalage
 		get_parent().add_child(minion)
 
+
 func subir_degats():
+
+	if not est_actif:
+		reveiller_boss()
+
 	if est_invulnerable: return
+		
 	pv -= 1
 	est_invulnerable = true
 	var tween = create_tween()
@@ -99,15 +122,20 @@ func subir_degats():
 	tween.tween_property(sprite, "scale", Vector2(1.8, 2.5), 0.05)
 	tween.tween_property(sprite, "scale", Vector2(2.2, 2.2), 0.05)
 	tween.tween_property(sprite, "modulate", Color.WHITE, 0.1)
+	
 	velocity = -velocity.normalized() * 80
 	move_and_slide()
+	
 	await get_tree().create_timer(0.2).timeout
 	est_invulnerable = false
+
 	if pv <= 0:
 		mourir()
 
 func mourir():
+	est_actif = false
 	set_physics_process(false)
+	
 	var tween = create_tween().set_parallel(true)
 	tween.tween_property(self, "rotation_degrees", 360 * 2, 1.5)
 	tween.tween_property(self, "scale", Vector2.ZERO, 1.5)
@@ -123,3 +151,7 @@ func _on_zone_degats_body_entered(body):
 	if body.name == "Player":
 		if body.has_method("recevoir_degats"):
 			body.recevoir_degats(1, global_position)
+
+func _on_zone_detection_body_entered(body):
+	if body.name == "Player":
+		reveiller_boss()
