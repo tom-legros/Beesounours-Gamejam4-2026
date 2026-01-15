@@ -10,6 +10,7 @@ var can_attack := true
 var is_attacking: bool = false
 var is_knocked_back : bool = false
 var is_small: bool = false
+var portal_entered: bool = false
 
 @export var normal_scale: Vector2 = Vector2(1.0, 1.0)
 @export var small_scale: Vector2 = Vector2(0.5, 0.5) 
@@ -25,6 +26,7 @@ var is_small: bool = false
 @onready var barre_endurance = get_tree().current_scene.find_child("BarreEndurance", true, false)
 @onready var attaque = $attaque
 @onready var mort = $mort
+@onready var timer = $timer
 
 
 var texture_normale = preload("res://img/Ours_Walking1.png")
@@ -117,7 +119,6 @@ func _physics_process(_delta):
 		retrecir()
 	if Input.is_key_pressed(KEY_E) and is_small == true:
 		agrandir()
-
 	var current_speed = 70
 	var target_zoom = ZOOM_NORMAL 
 	if is_small:
@@ -258,4 +259,14 @@ func apply_shrink_effect(final_scale: Vector2, final_zoom: Vector2):
 
 
 func on_portal_entered(_body: Node2D) -> void:
+	portal_entered = true
 	pass # Replace with function body.
+
+func random_size():
+	if portal_entered:
+		if is_small:
+			timer.start(randi_range(10,20))
+			retrecir()
+		else:
+			timer.start(randi_range(5,15))
+			agrandir()
