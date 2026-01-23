@@ -5,7 +5,7 @@
 # - NE SUPPRIMEZ PAS LES CHAMPS VIDES laissez par exemple,    abstract: "" 
 # ----------------------------------
 title: "Beesounours"  # Le titre tel qu'il apparaîtra lors de la présentation
-abstract: "Vous jouez un ours qui matraite des animaux pour récupérer du miel" # Résumé de votre jeu
+abstract: "Vous jouez un ours qui maltraite des animaux pour récupérer du miel" # Résumé de votre jeu
 team:  "La Bulle 2"  # Le nom de votre équipe tel qu'il apparaîtra à la présentation
 motto: "Il n'y a jamais de bulle sans savon, attention blanchard/" # Le slogan de votre équipe
 members:  # Liste des membres de l'équipe (ajoutez un bloc par membre)
