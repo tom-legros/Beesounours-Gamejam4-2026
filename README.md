@@ -1,6 +1,8 @@
 # Beesounours
 
-Vous incarnez un ours qui n'hésite pas à malmener les animaux de la forêt pour récupérer du miel. Un jeu d'action 2D, développé avec Godot en équipe de 3 lors de la Game Jam 4, organisée à l'IUT de Reims.
+Vous incarnez un ours qui n'hésite pas à malmener les animaux de la forêt pour récupérer du miel. Un jeu d'action 2D en 2D top-down, développé avec Godot en équipe de 3 lors de la Game Jam 4, organisée à l'IUT de Reims.
+
+🎮 **Jouer en ligne : [reshomy.itch.io/beesounours](https://reshomy.itch.io/beesounours)**
 
 ## Équipe — La Bulle 2
 
